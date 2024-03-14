@@ -86,9 +86,9 @@
 
 <style>
 	input[type='color'] {
-			height: 3rem;
-			width: 3rem;
-			border: none;
-			padding: 0;
+		height: 3rem;
+		width: 3rem;
+		border: none;
+		padding: 0;
 	}
 </style>

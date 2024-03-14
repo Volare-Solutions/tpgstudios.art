@@ -12,9 +12,7 @@
 		<div
 			class="z-10 absolute top-[40%] left-0 w-full flex justify-center items-center flex-col gap-y-2"
 		>
-			<div
-				class="text-white flex justify-center items-center flex-col gap-y-2"
-			>
+			<div class="text-white flex justify-center items-center flex-col gap-y-2">
 				<div style="backdrop-filter: blur(5px); border-radius: 10px; padding: 12px;">
 					<div class="flex flex-row gap-4 items-center">
 						<img src={MobileLogo} alt="TPG" class="h-[40px] sm:hidden flex" />
@@ -84,7 +82,8 @@
 	<div class="w-full flex flex-col py-4 px-2 bg-black text-white">
 		<h3 class="text-center font-jura text-5xl pb-8 px-3">Who we are</h3>
 		<p class="text-center text-lg font-light pb-4 px-3">
-			We design minimalist golf streetwear that combines the elegance of golf with the edge of street style.
+			We design minimalist golf streetwear that combines the elegance of golf with the edge of
+			street style.
 		</p>
 
 		<p class="text-center text-lg font-light pb-8">
@@ -94,11 +93,14 @@
 	<div class="w-full md:w-3/4 m-auto">
 		<h2 class="font-jura sm:text-4xl text-3xl text-center pt-8 pb-4">The Love of the Game</h2>
 		<p class="text-lg text-center px-4 md:px-16 font-light">
-			Our brand is built on a deep love for golf. We believe in the elegance of the game, the camaraderie it fosters, and the quiet moments of focus it demands. Our minimalist golf streetwear is designed to reflect these values.
+			Our brand is built on a deep love for golf. We believe in the elegance of the game, the
+			camaraderie it fosters, and the quiet moments of focus it demands. Our minimalist golf
+			streetwear is designed to reflect these values.
 		</p>
 		<h2 class="font-jura sm:text-4xl text-3xl text-center pt-8 pb-4">Our Process</h2>
 		<p class="text-lg text-center px-4 md:px-16 font-light pb-8">
-			Each piece is made to order, ensuring a perfect fit and unique style. Once you place an order, we create your piece, package it with care, and send it directly to your door.
+			Each piece is made to order, ensuring a perfect fit and unique style. Once you place an order,
+			we create your piece, package it with care, and send it directly to your door.
 		</p>
 	</div>
 	{#each data.collections as collection}

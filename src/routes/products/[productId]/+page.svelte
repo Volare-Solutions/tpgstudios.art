@@ -220,7 +220,8 @@
 			Our pieces are lightweight, high quality, and designed with a clean, modern aesthetic.
 		</p>
 		<p class="text-xl font-light text-neutral-700 pb-8">
-			Each piece is made to order. We are just starting out and hope to have you on this journey with us.
+			Each piece is made to order. We are just starting out and hope to have you on this journey
+			with us.
 		</p>
 	</div>
 

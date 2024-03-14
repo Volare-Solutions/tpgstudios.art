@@ -31,12 +31,7 @@
 		>
 			<div class="md:w-1/2">
 				<!-- CLD IMAGE SWITCH NEEDED -->
-				<CldImage
-					src={"retro-logo"}
-					width={1000}
-					height={1000}
-					objectFit="cover"
-				/>
+				<CldImage src={'retro-logo'} width={1000} height={1000} objectFit="cover" />
 			</div>
 
 			<div class="md:w-1/2 p-4 flex flex-col">

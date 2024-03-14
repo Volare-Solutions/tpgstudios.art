@@ -9,7 +9,7 @@
 		>
 			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
-				src={"retro-logo"}
+				src={'retro-logo'}
 				width={1600}
 				height={1600}
 				alt="decoration image"

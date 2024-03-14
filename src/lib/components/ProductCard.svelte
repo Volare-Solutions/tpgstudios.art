@@ -29,12 +29,12 @@
 	};
 
 	const handleAddedToCart = () => {
-		const el = document.getElementById('added-to-cart')
-		el?.classList.remove('hidden')
+		const el = document.getElementById('added-to-cart');
+		el?.classList.remove('hidden');
 		setTimeout(() => {
-			el?.classList.add('hidden')
+			el?.classList.add('hidden');
 		}, 4000);
-	}
+	};
 
 	let selectedSizeIdx = 0;
 	while (selectedSizeIdx < itemData.sizes.length && !itemData.sizes[selectedSizeIdx].isAvailable)
@@ -120,7 +120,6 @@
 		{/each}
 	</div>
 </div>
-
 
 <div
 	class={`flex sm:hidden flex-col sm:items-center sm:gap-x-8 sm:gap-y-0 gap-y-2 p-1 sm:p-4 ${

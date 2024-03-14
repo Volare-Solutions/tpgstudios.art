@@ -89,7 +89,7 @@ const seed = async () => {
 			stripeProductId: 'prod_Pg9lBrLuiQdTDD',
 			stripePriceId: 'price_1OqnRqGq88MAyKwhfRxgZRDS',
 			productId: 'drive_shirt_ii'
-		},
+		}
 	];
 
 	const insertedProductSizes = (await db.insert(productSize).values(productSizes)).rows;

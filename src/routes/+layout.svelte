@@ -28,10 +28,7 @@
 
 <svelte:head>
 	<title>TPG Studios</title>
-	<meta
-		name="description"
-		content="TPG Studios, beauty crystalized and shipped straight to you."
-	/>
+	<meta name="description" content="TPG Studios, beauty crystalized and shipped straight to you." />
 </svelte:head>
 
 <CldOgImage

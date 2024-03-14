@@ -108,14 +108,7 @@
 
 					<div class="gap-1.5 grid">
 						<Label for="size">Size</Label>
-						<Input
-							name="size"
-							required
-							id="size"
-							class="w-full"
-							type="text"
-							placeholder="L"
-						/>
+						<Input name="size" required id="size" class="w-full" type="text" placeholder="L" />
 					</div>
 
 					<div class="gap-1.5 grid">

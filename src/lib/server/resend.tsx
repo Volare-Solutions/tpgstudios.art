@@ -11,7 +11,7 @@ export const sendThankYouListEmail = async (email: string, key: string) => {
 		await resend.emails.send({
 			from: 'no-reply@tpgstudios.art',
 			to: email,
-			subject: "Welcome to TPG Studios!",
+			subject: 'Welcome to TPG Studios!',
 			react: <ListThankYou email={email} unsubKey={key} />
 		});
 		console.log('sent');
@@ -25,7 +25,7 @@ export const sendThankYouPurchaseEmail = async (email: string) => {
 		await resend.emails.send({
 			from: 'no-reply@tpgstudios.art',
 			to: email,
-			subject: "TPG Studios: Thank you for your order!",
+			subject: 'TPG Studios: Thank you for your order!',
 			react: <PurchaseThankYou />
 		});
 		console.log('sent');
@@ -39,7 +39,7 @@ export const sendTestEmail = async (email: string) => {
 		await resend.emails.send({
 			from: 'no-reply@tpgstudios.art',
 			to: email,
-			subject: "TPG Studios: Thank you for your order!",
+			subject: 'TPG Studios: Thank you for your order!',
 			react: <PurchaseThankYou />
 		});
 		console.log('sent');

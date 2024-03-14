@@ -16,7 +16,7 @@ export const actions = {
 			desc: zfd.text(),
 			fromColor: zfd.text(),
 			viaColor: zfd.text(),
-			toColor: zfd.text(),
+			toColor: zfd.text()
 		});
 
 		const res = schema.safeParse(data);
@@ -34,7 +34,7 @@ export const actions = {
 			desc: res.data.desc,
 			gradientColorStart: res.data.fromColor,
 			gradientColorVia: res.data.viaColor,
-			gradientColorStop: res.data.toColor,
+			gradientColorStop: res.data.toColor
 		});
 
 		redirect(300, `/admin/products/${productId}/sizes`);
