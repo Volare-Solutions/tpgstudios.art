@@ -34,7 +34,7 @@
 	<h2 class="text-gray-200 text-3xl font-bold">Create New Product</h2>
 	<div class="gap-1.5 grid">
 		<Label for="name">Name</Label>
-		<Input name="name" required id="name" class="w-[600px]" type="text" placeholder="My Product" />
+		<Input name="name" required id="name" class="w-full" type="text" placeholder="My Product" />
 	</div>
 
 	<div class="gap-1.5 grid">
@@ -42,7 +42,7 @@
 		<Textarea
 			name="desc"
 			id="desc"
-			class="w-[600px]"
+			class="w-full"
 			required
 			placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 		/>

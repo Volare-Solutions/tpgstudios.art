@@ -43,7 +43,7 @@
 			name="name"
 			required
 			id="name"
-			class="w-[600px]"
+			class="w-full max-w-md"
 			type="text"
 			placeholder="My Product"
 			value={data.productBasics.name}
@@ -57,7 +57,7 @@
 			name="desc"
 			on:change={() => (disableUpdate = false)}
 			id="desc"
-			class="w-[600px]"
+			class="w-full max-w-md"
 			required
 			placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 			value={data.productBasics.desc}
