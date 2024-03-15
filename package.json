@@ -51,7 +51,7 @@
 		"@react-email/tailwind": "^0.0.14",
 		"@vercel/analytics": "^1.1.2",
 		"arctic": "^0.10.6",
-		"bits-ui": "^0.9.9",
+		"bits-ui": "0.19.6",
 		"cloudinary": "^2.0.1",
 		"clsx": "^2.1.0",
 		"cmdk-sv": "^0.0.15",
