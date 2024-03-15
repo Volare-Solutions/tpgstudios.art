@@ -1,15 +1,7 @@
-<script lang="ts">
-	import type { PageData } from "./$types.js";
-	import ProfileForm from "./profile-form.svelte";
-	import { Separator } from "$lib/components/ui/separator/index.js";
-	export let data: PageData;
+<script>
+	import { Button } from '$lib/components/ui/button';
 </script>
 
-<div class="space-y-6">
-	<div>
-		<h3 class="text-lg font-medium">Account</h3>
-		<p class="text-sm text-muted-foreground">This is how others will see you on the site.</p>
-	</div>
-	<Separator />
-	<ProfileForm data={data.form} />
-</div>
+<div>profile page coming soon!</div>
+
+<Button href="/auth/logout">Logout</Button>
