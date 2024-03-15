@@ -15,9 +15,9 @@ const adapter = new DrizzleMySQLAdapter(db, session, user);
 
 export const github = new GitHub(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
 
-const baseUrl = process.env.BASE_URL
-	? `https://${process.env.BASE_URL}`
-	: 'http://localhost:5173';
+const baseUrl = process.env.NODE_ENV === 'production'
+    ? 'https://www.tpgstudios.art'
+    : 'http://localhost:5173';
 
 const redirectUrl = `${baseUrl}/auth/callback/google`;
 
