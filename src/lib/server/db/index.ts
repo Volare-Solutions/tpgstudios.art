@@ -1,12 +1,11 @@
-import { drizzle } from 'drizzle-orm/planetscale-serverless';
-import * as schema from './schema';
-import { Client } from '@planetscale/database';
+import { createPool } from '@vercel/postgres';
+import { drizzle } from 'drizzle-orm/vercel-postgres';
 import { env } from '$env/dynamic/private';
+import * as schema from './schema';
 
-const client = new Client({
-	host: env.DATABASE_HOST,
-	username: env.DATABASE_USERNAME,
-	password: env.DATABASE_PASSWORD
+// Load the connection string from environment variables
+const pool = createPool({
+    connectionString: env.POSTGRES_URL,
 });
 
-export const db = drizzle(client, { schema });
+export const db = drizzle(pool, { schema });

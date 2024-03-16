@@ -1,27 +1,29 @@
 import { relations } from 'drizzle-orm';
 import {
-	mysqlTable,
+	pgTable,
+	pgEnum,
+	serial,
 	text,
-	int,
-	primaryKey,
-	boolean,
 	timestamp,
-	varchar,
-	mysqlEnum,
-	datetime
-} from 'drizzle-orm/mysql-core';
+	boolean,
+	uniqueIndex,
+	primaryKey,
+	integer,
+  } from 'drizzle-orm/pg-core';
 
-export const user = mysqlTable(
+export const proividerEnum = pgEnum('provider', ['google', 'github']);
+
+export const user = pgTable(
 	'user',
 	{
-		id: varchar('id', { length: 100 }).unique().notNull(),
-		provider: mysqlEnum('provider', ['google', 'github']).notNull(),
-		providerId: varchar('provider_id', { length: 255 }).notNull(),
-		firstName: varchar('first_name', { length: 100 }).notNull(),
-		lastName: varchar('last_name', { length: 100 }).notNull(),
+		id: text('id').unique().notNull(),
+		provider: proividerEnum('provider'),
+		providerId: text('provider_id').notNull(),
+		firstName: text('first_name').notNull(),
+		lastName: text('last_name').notNull(),
 		isAdmin: boolean('is_admin').notNull(),
-		email: varchar('email', { length: 100 }).notNull().unique(),
-		stripeCustomerId: varchar('stripe_customer_id', { length: 100 }).unique()
+		email: text('email').notNull().unique(),
+		stripeCustomerId: text('stripe_customer_id').unique()
 	},
 	(table) => {
 		return {
@@ -34,9 +36,9 @@ export const userRelations = relations(user, ({ many }) => ({
 	sessions: many(session)
 }));
 
-export const session = mysqlTable('session', {
-	id: varchar('id', { length: 100 }).primaryKey(),
-	userId: varchar('user_id', { length: 100 }).notNull(),
+export const session = pgTable('session', {
+	id: text('id').primaryKey(),
+	userId: text('user_id').notNull(),
 	expiresAt: timestamp('expires_at').notNull()
 });
 
@@ -47,24 +49,24 @@ export const sessionRelations = relations(session, ({ one }) => ({
 	})
 }));
 
-export const emailList = mysqlTable('email_list', {
-	email: varchar('email', { length: 255 }).primaryKey(),
-	subscribedAt: datetime('subscribed_at').notNull(),
-	unsubscribedAt: datetime('unsubscribed_at'),
-	key: varchar('key', { length: 20 }).notNull()
+export const emailList = pgTable('email_list', {
+	email: text('email').primaryKey(),
+	subscribedAt: timestamp('subscribed_at').notNull(),
+	unsubscribedAt: timestamp('unsubscribed_at'),
+	key: text('key').notNull()
 });
 
-export const product = mysqlTable('product', {
-	id: varchar('id', { length: 100 }).primaryKey(),
-	name: varchar('name', { length: 100 }).notNull(),
+export const product = pgTable('product', {
+	id: text('id').primaryKey(),
+	name: text('name').notNull(),
 	desc: text('desc').notNull(),
-	gradientColorStart: varchar('gradient_color_start', { length: 20 })
+	gradientColorStart: text('gradient_color_start')
 		.notNull()
 		.default('from-red-600'),
-	gradientColorVia: varchar('gradient_color_via', { length: 20 })
+	gradientColorVia: text('gradient_color_via')
 		.notNull()
 		.default('via-purple-500'),
-	gradientColorStop: varchar('gradient_color_end', { length: 20 })
+	gradientColorStop: text('gradient_color_end')
 		.notNull()
 		.default('to-indigo-400')
 });
@@ -76,11 +78,11 @@ export const productRelations = relations(product, ({ many }) => ({
 	reviews: many(productReview)
 }));
 
-export const productToProductTag = mysqlTable(
+export const productToProductTag = pgTable(
 	'product_to_product_tag',
 	{
-		productId: varchar('product_id', { length: 100 }).notNull(),
-		tagId: varchar('tag_id', { length: 100 }).notNull()
+		productId: text('product_id').notNull(),
+		tagId: text('tag_id').notNull()
 	},
 	(table) => {
 		return {
@@ -100,8 +102,8 @@ export const productToProductTagRelations = relations(productToProductTag, ({ on
 	})
 }));
 
-export const productTag = mysqlTable('product_tag', {
-	name: varchar('name', { length: 100 }).primaryKey(),
+export const productTag = pgTable('product_tag', {
+	name: text('name').primaryKey(),
 	desc: text('desc').notNull()
 });
 
@@ -109,15 +111,15 @@ export const productTagRelations = relations(productTag, ({ many }) => ({
 	products: many(productToProductTag)
 }));
 
-export const productSize = mysqlTable('product_size', {
-	code: varchar('code', { length: 100 }).primaryKey(),
-	name: varchar('name', { length: 255 }).notNull().default('my product'),
+export const productSize = pgTable('product_size', {
+	code: text('code').primaryKey(),
+	name: text('name').notNull().default('my product'),
 	isAvailable: boolean('is_available').notNull().default(true),
-	price: int('price').notNull(),
-	size: varchar('size', { length: 100 }).notNull(),
-	stripePriceId: varchar('stripe_price_id', { length: 100 }).notNull(),
-	stripeProductId: varchar('stripe_product_id', { length: 100 }).notNull(),
-	productId: varchar('product_id', { length: 100 }).notNull()
+	price: integer('price').notNull(),
+	size: text('size').notNull(),
+	stripePriceId: text('stripe_price_id').notNull(),
+	stripeProductId: text('stripe_product_id').notNull(),
+	productId: text('product_id').notNull()
 });
 
 export const productSizeRelations = relations(productSize, ({ one }) => ({
@@ -127,13 +129,13 @@ export const productSizeRelations = relations(productSize, ({ one }) => ({
 	})
 }));
 
-export const productImage = mysqlTable('product_image', {
-	cloudinaryId: varchar('cloudinary_id', { length: 255 }).primaryKey(),
-	productId: varchar('product_id', { length: 100 }).notNull(),
-	width: int('width').notNull(),
-	height: int('height').notNull(),
+export const productImage = pgTable('product_image', {
+	cloudinaryId: text('cloudinary_id').primaryKey(),
+	productId: text('product_id').notNull(),
+	width: integer('width').notNull(),
+	height: integer('height').notNull(),
 	isVertical: boolean('is_vertical').notNull().default(false),
-	order: int('order').notNull().default(0),
+	order: integer('order').notNull().default(0),
 	isPrimary: boolean('is_primary').default(false).notNull()
 });
 
@@ -144,11 +146,11 @@ export const productImageRelations = relations(productImage, ({ one }) => ({
 	})
 }));
 
-export const productReview = mysqlTable('product_review', {
-	id: varchar('id', { length: 100 }).primaryKey(),
-	rating: int('rating').notNull(),
+export const productReview = pgTable('product_review', {
+	id: text('id').primaryKey(),
+	rating: integer('rating').notNull(),
 	reviewText: text('review_text'),
-	productId: varchar('product_id', { length: 100 }),
+	productId: text('product_id'),
 	timestamp: timestamp('timestamp').$defaultFn(() => new Date())
 });
 
@@ -159,24 +161,26 @@ export const productReviewRelations = relations(productReview, ({ one }) => ({
 	})
 }));
 
-export const order = mysqlTable('order', {
+export const statusEnum = pgEnum('status', ['new', 'placed', 'packaged', 'sent']);
+
+export const order = pgTable('order', {
 	// this is really the checkout session id
-	stripeOrderId: varchar('stripe_order_id', { length: 100 }).primaryKey(),
-	stripeCustomerId: varchar('stripe_customer_id', { length: 100 }),
-	totalPrice: int('total_price').notNull(),
+	stripeOrderId: text('stripe_order_id').primaryKey(),
+	stripeCustomerId: text('stripe_customer_id'),
+	totalPrice: integer('total_price').notNull(),
 	timestamp: timestamp('timestamp').notNull(),
-	status: mysqlEnum('status', ['new', 'placed', 'packaged', 'sent']).notNull().default('new')
+	status: statusEnum('status').notNull().default('new')
 });
 
 export const orderRelations = relations(order, ({ many }) => ({
 	products: many(orderProduct)
 }));
 
-export const orderProduct = mysqlTable('order_product', {
-	id: varchar('id', { length: 20 }).primaryKey(),
-	productSizeCode: varchar('product_size_code', { length: 100 }).notNull(),
-	quantity: int('quantity').notNull(),
-	orderId: varchar('order_id', { length: 100 }).notNull()
+export const orderProduct = pgTable('order_product', {
+	id: text('id').primaryKey(),
+	productSizeCode: text('product_size_code').notNull(),
+	quantity: integer('quantity').notNull(),
+	orderId: text('order_id').notNull()
 });
 
 export const orderProductRelations = relations(orderProduct, ({ one }) => ({

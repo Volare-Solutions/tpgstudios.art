@@ -8,8 +8,7 @@ This is a real world e-commerce site which uses Stripe for payments and Cloudina
 - 💦 [Drizzle]("https://orm.drizzle.team/docs/overview"): Lightweight high power ORM for interfacing with our DB
 - 🌩️ [Cloudinary]("https://svelte.cloudinary.dev/"): Image hosting and manipulation
 - 💳 [Stripe]("https://stripe.com/docs"): Payment processing
-- 💽 [PlanetScale]("https://planetscale.com/"): Cloud hosted MySQL database (with data branching)
-- 🚀 [Vercel]("https://vercel.com/home"): Serverless hosting
+- 🚀 [Vercel]("https://vercel.com/home"): Serverless hosting and database
 - 🎨 [ShadCN for Svelte]("https://www.shadcn-svelte.com/"): Beautifully designed components
 - 🖌️ [TailwindCSS]("https://tailwindcss.com/docs/installation"): Inline styles
 - 🔒 [Lucia V3]("https://v3.lucia-auth.com/"): Authentication library and OAuth helpers
