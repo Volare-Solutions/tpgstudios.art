@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS "session" (
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "user" (
-	"id" serial NOT NULL,
+	"id" text NOT NULL,
 	"provider" "provider",
 	"provider_id" text NOT NULL,
 	"first_name" text NOT NULL,

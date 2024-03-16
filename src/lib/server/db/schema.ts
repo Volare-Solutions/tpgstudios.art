@@ -2,11 +2,9 @@ import { relations } from 'drizzle-orm';
 import {
 	pgTable,
 	pgEnum,
-	serial,
 	text,
 	timestamp,
 	boolean,
-	uniqueIndex,
 	primaryKey,
 	integer,
   } from 'drizzle-orm/pg-core';
