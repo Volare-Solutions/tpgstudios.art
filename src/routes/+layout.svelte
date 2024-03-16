@@ -6,7 +6,11 @@
 	import { navigating } from '$app/stores';
 	import { CldOgImage } from 'svelte-cloudinary';
 	import { fade } from 'svelte/transition';
+	import { inject } from '@vercel/analytics'
 	import * as Alert from '$lib/components/ui/alert';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	injectSpeedInsights();
 
 	export let data;
 	const handleRemoveMenu = () => {
