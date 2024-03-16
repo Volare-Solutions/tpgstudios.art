@@ -10,6 +10,7 @@
 	import * as Alert from '$lib/components/ui/alert';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
+	inject();
 	injectSpeedInsights();
 
 	export let data;
