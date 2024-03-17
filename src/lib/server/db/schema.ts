@@ -9,23 +9,24 @@ import {
 	integer,
   } from 'drizzle-orm/pg-core';
 
-export const proividerEnum = pgEnum('provider', ['google', 'github']);
+export const providerEnum = pgEnum('provider', ['google', 'github', 'email']);
 
 export const user = pgTable(
 	'user',
 	{
 		id: text('id').unique().notNull(),
-		provider: proividerEnum('provider'),
+		provider: providerEnum('provider'),
 		providerId: text('provider_id').notNull(),
 		firstName: text('first_name').notNull(),
 		lastName: text('last_name').notNull(),
-		isAdmin: boolean('is_admin').notNull(),
+		isAdmin: boolean('is_admin').notNull().default(false),
 		email: text('email').notNull().unique(),
-		stripeCustomerId: text('stripe_customer_id').unique()
+		stripeCustomerId: text('stripe_customer_id').unique(),
+		password: text('password'),
 	},
 	(table) => {
 		return {
-			pk: primaryKey({ columns: [table.provider, table.providerId] })
+			pk: primaryKey({ columns: [table.id, table.email] })
 		};
 	}
 );

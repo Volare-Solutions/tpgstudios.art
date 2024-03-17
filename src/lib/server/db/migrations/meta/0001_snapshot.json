@@ -1,5 +1,5 @@
 {
-  "id": "b29ed826-9c9a-4e7a-ad79-67c963534f70",
+  "id": "db65d98c-bcb5-44e0-a9de-7c31a25a45f3",
   "prevId": "cee4506d-5e1c-4e60-9cab-c49c0c369372",
   "version": "5",
   "dialect": "pg",
@@ -435,7 +435,8 @@
           "name": "is_admin",
           "type": "boolean",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": false
         },
         "email": {
           "name": "email",
@@ -448,16 +449,22 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {
-        "user_provider_provider_id_pk": {
-          "name": "user_provider_provider_id_pk",
+        "user_id_email_pk": {
+          "name": "user_id_email_pk",
           "columns": [
-            "provider",
-            "provider_id"
+            "id",
+            "email"
           ]
         }
       },
@@ -491,7 +498,8 @@
       "name": "provider",
       "values": {
         "google": "google",
-        "github": "github"
+        "github": "github",
+        "email": "email"
       }
     },
     "status": {

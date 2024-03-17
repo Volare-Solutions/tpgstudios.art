@@ -66,8 +66,8 @@ dependencies:
     specifier: 3.0.0-beta.14
     version: 3.0.0-beta.14
   lucide-svelte:
-    specifier: ^0.294.0
-    version: 0.294.0(svelte@4.2.12)
+    specifier: ^0.352.0
+    version: 0.352.0(svelte@4.2.12)
   mysql2:
     specifier: ^3.9.1
     version: 3.9.2
@@ -5687,10 +5687,10 @@ packages:
       oslo: 0.27.1
     dev: false
 
-  /lucide-svelte@0.294.0(svelte@4.2.12):
-    resolution: {integrity: sha512-jqQDL9bfZm3DzEhulRdPWWw88qQpS/w/fDAdgTsYXjij5I81HYFFxbDHpnSHes2oH9Eri5M3QQDgqV9xtqkyig==}
+  /lucide-svelte@0.352.0(svelte@4.2.12):
+    resolution: {integrity: sha512-L2Hk0xGMMI25P+5nUBbhZrXLzZFVrvilL5ctscX/DbA/A1vw9uYToMqdn6oYmTA0FTcZ3vlmibaRCDcfWaUiNg==}
     peerDependencies:
-      svelte: '>=3 <5'
+      svelte: ^3 || ^4 || ^5.0.0-next.42
     dependencies:
       svelte: 4.2.12
     dev: false

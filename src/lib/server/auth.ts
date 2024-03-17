@@ -4,14 +4,14 @@ import {
 	GOOGLE_CLIENT_ID,
 	GOOGLE_CLIENT_SECRET
 } from '$env/static/private';
-import { DrizzleMySQLAdapter } from '@lucia-auth/adapter-drizzle';
+import { DrizzlePostgreSQLAdapter} from '@lucia-auth/adapter-drizzle';
 import { redirect } from '@sveltejs/kit';
 import { GitHub, Google } from 'arctic';
 import { Lucia } from 'lucia';
 import { db } from './db';
 import { session, user } from './db/schema';
 
-const adapter = new DrizzleMySQLAdapter(db, session, user);
+const adapter = new DrizzlePostgreSQLAdapter(db, session, user);
 
 export const github = new GitHub(GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
 

@@ -15,6 +15,41 @@
       "when": 1710612849988,
       "tag": "0001_fine_loa",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710651025758,
+      "tag": "0002_moaning_lockjaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1710651545103,
+      "tag": "0003_hard_silver_samurai",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1710651683266,
+      "tag": "0004_sad_praxagora",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1710651859049,
+      "tag": "0005_mixed_roulette",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1710651892581,
+      "tag": "0006_flippant_praxagora",
+      "breakpoints": true
     }
   ]
 }

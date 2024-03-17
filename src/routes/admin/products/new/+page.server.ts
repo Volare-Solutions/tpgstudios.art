@@ -23,7 +23,6 @@ export const actions = {
 
 		if (!res.success) {
 			error(400, res.error.name);
-			return;
 		}
 
 		const productId = generateId(15);
