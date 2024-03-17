@@ -14,6 +14,10 @@ export const load = async (event) => {
 
 export const actions = {
     default: async (event) => {
+		if (event.locals.session) {
+            return redirect(307, '/profile');
+        }
+
 		const data = await event.request.formData();
 
 		const schema = zfd.formData({
@@ -39,8 +43,6 @@ export const actions = {
 			}
 
 			const isValidPassword = await new Argon2id().verify(userRecord[0].password, res.data.password);
-
-			console.log(isValidPassword)
 
 			if (!isValidPassword) {
 				throw new Error('Invalid credentials');

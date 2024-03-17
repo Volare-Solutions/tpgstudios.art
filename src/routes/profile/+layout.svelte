@@ -15,7 +15,7 @@ import { Separator } from "$lib/components/ui/separator/index.js";
 	];
 </script>
 
-<div class="hidden space-y-6 p-10 pb-16 md:block">
+<div class="space-y-6 p-10 pb-16 md:block">
 	<div class="flex justify-between items-center">
 		<div class="space-y-0.5">
 			<h2 class="text-2xl font-bold tracking-tight">Settings</h2>
