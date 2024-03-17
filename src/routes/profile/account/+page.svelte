@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Separator } from "$lib/components/ui/separator/index.js";
-	import AccountForm from "./account-form.svelte";
-	import type { PageData } from "./$types.js";
+	import { Separator } from '$lib/components/ui/separator/index.js';
+	import AccountForm from './account-form.svelte';
+	import type { PageData } from './$types.js';
 
 	export let data: PageData;
 </script>

@@ -7,5 +7,5 @@ export default {
 	dbCredentials: {
 		connectionString: process.env.POSTGRES_URL ?? ''
 	},
-	out: './src/lib/server/db/migrations',
+	out: './src/lib/server/db/migrations'
 } satisfies Config;

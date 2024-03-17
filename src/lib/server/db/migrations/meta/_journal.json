@@ -1,20 +1,20 @@
 {
-  "version": "5",
-  "dialect": "pg",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "5",
-      "when": 1710567172459,
-      "tag": "0000_damp_warbird",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1710612849988,
-      "tag": "0001_fine_loa",
-      "breakpoints": true
-    }
-  ]
+	"version": "5",
+	"dialect": "pg",
+	"entries": [
+		{
+			"idx": 0,
+			"version": "5",
+			"when": 1710567172459,
+			"tag": "0000_damp_warbird",
+			"breakpoints": true
+		},
+		{
+			"idx": 1,
+			"version": "5",
+			"when": 1710612849988,
+			"tag": "0001_fine_loa",
+			"breakpoints": true
+		}
+	]
 }

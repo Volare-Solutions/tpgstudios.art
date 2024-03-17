@@ -5,7 +5,7 @@ import * as schema from './schema';
 
 // Load the connection string from environment variables
 const pool = createPool({
-    connectionString: env.POSTGRES_URL,
+	connectionString: env.POSTGRES_URL
 });
 
 export const db = drizzle(pool, { schema });
