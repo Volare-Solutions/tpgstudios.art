@@ -1,40 +1,42 @@
 <script lang="ts" context="module">
-	import { z } from 'zod';
+	import { z } from "zod";
 	export const profileFormSchema = z.object({
 		username: z
 			.string()
-			.min(2, 'Username must be at least 2 characters.')
-			.max(30, 'Username must not be longer than 30 characters'),
-		email: z.string({ required_error: 'Please select an email to display' }).email(),
-		bio: z.string().min(4).max(160).default('I own a computer.'),
-		urls: z.array(z.string().url()).default(['https://shadcn.com', 'https://twitter.com/shadcn'])
+			.min(2, "Username must be at least 2 characters.")
+			.max(30, "Username must not be longer than 30 characters"),
+		email: z.string({ required_error: "Please select an email to display" }).email(),
+		bio: z.string().min(4).max(160).default("I own a computer."),
+		urls: z
+			.array(z.string().url())
+			.default(["https://shadcn.com", "https://twitter.com/shadcn"]),
 	});
 	export type ProfileFormSchema = typeof profileFormSchema;
 </script>
 
 <script lang="ts">
-	import * as Form from '$lib/components/ui/form/index.js';
-	import * as Select from '$lib/components/ui/select/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { Button } from '$lib/components/ui/button/index.js';
-	import { Textarea } from '$lib/components/ui/textarea/index.js';
-	import { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
-	import SuperDebug from 'sveltekit-superforms';
-	import { zodClient } from 'sveltekit-superforms/adapters';
-	import { cn } from '$lib/utils.js';
-	import { browser } from '$app/environment';
-	import { tick } from 'svelte';
+	import * as Form from "$lib/components/ui/form/index.js";
+	import * as Select from "$lib/components/ui/select/index.js";
+	import { Input } from "$lib/components/ui/input/index.js";
+	import { Button } from "$lib/components/ui/button/index.js";
+	import { Textarea } from "$lib/components/ui/textarea/index.js";
+	import { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import SuperDebug from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import { cn } from "$lib/utils.js";
+	import { browser } from "$app/environment";
+	import { tick } from "svelte";
 
 	export let data: SuperValidated<Infer<ProfileFormSchema>>;
 
 	const form = superForm(data, {
-		validators: zodClient(profileFormSchema)
+		validators: zodClient(profileFormSchema),
 	});
 
 	const { form: formData, enhance } = form;
 
 	function addUrl() {
-		$formData.urls = [...$formData.urls, ''];
+		$formData.urls = [...$formData.urls, ""];
 
 		tick().then(() => {
 			const urlInputs = Array.from(
@@ -47,7 +49,7 @@
 
 	$: selectedEmail = {
 		label: $formData.email,
-		value: $formData.email
+		value: $formData.email,
 	};
 </script>
 
@@ -58,8 +60,8 @@
 			<Input placeholder="@shadcn" {...attrs} bind:value={$formData.username} />
 		</Form.Control>
 		<Form.Description>
-			This is your public display name. It can be your real name or a pseudonym. You can only change
-			this once every 30 days.
+			This is your public display name. It can be your real name or a pseudonym. You can only
+			change this once every 30 days.
 		</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
@@ -85,7 +87,9 @@
 			<input hidden name={attrs.name} bind:value={$formData.email} />
 		</Form.Control>
 		<Form.Description>
-			You can manage verified email addresses in your <a href="/examples/forms">email settings</a>.
+			You can manage verified email addresses in your <a href="/examples/forms"
+				>email settings</a
+			>.
 		</Form.Description>
 		<Form.FieldErrors />
 	</Form.Field>
@@ -104,7 +108,7 @@
 			<Form.Legend>URLs</Form.Legend>
 			{#each $formData.urls as _, i}
 				<Form.ElementField {form} name="urls[{i}]">
-					<Form.Description class={cn(i !== 0 && 'sr-only')}>
+					<Form.Description class={cn(i !== 0 && "sr-only")}>
 						Add links to your website, blog, or social media profiles.
 					</Form.Description>
 					<Form.Control let:attrs>

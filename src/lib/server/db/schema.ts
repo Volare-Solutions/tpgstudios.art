@@ -6,8 +6,8 @@ import {
 	timestamp,
 	boolean,
 	primaryKey,
-	integer
-} from 'drizzle-orm/pg-core';
+	integer,
+  } from 'drizzle-orm/pg-core';
 
 export const proividerEnum = pgEnum('provider', ['google', 'github']);
 
@@ -58,9 +58,15 @@ export const product = pgTable('product', {
 	id: text('id').primaryKey(),
 	name: text('name').notNull(),
 	desc: text('desc').notNull(),
-	gradientColorStart: text('gradient_color_start').notNull().default('from-red-600'),
-	gradientColorVia: text('gradient_color_via').notNull().default('via-purple-500'),
-	gradientColorStop: text('gradient_color_end').notNull().default('to-indigo-400')
+	gradientColorStart: text('gradient_color_start')
+		.notNull()
+		.default('from-red-600'),
+	gradientColorVia: text('gradient_color_via')
+		.notNull()
+		.default('via-purple-500'),
+	gradientColorStop: text('gradient_color_end')
+		.notNull()
+		.default('to-indigo-400')
 });
 
 export const productRelations = relations(product, ({ many }) => ({

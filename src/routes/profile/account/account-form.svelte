@@ -1,27 +1,27 @@
 <script lang="ts" context="module">
-	import { z } from 'zod';
+	import { z } from "zod";
 
 	const languages = [
-		{ label: 'English', value: 'en' },
-		{ label: 'French', value: 'fr' },
-		{ label: 'German', value: 'de' },
-		{ label: 'Spanish', value: 'es' },
-		{ label: 'Portuguese', value: 'pt' },
-		{ label: 'Russian', value: 'ru' },
-		{ label: 'Japanese', value: 'ja' },
-		{ label: 'Korean', value: 'ko' },
-		{ label: 'Chinese', value: 'zh' }
+		{ label: "English", value: "en" },
+		{ label: "French", value: "fr" },
+		{ label: "German", value: "de" },
+		{ label: "Spanish", value: "es" },
+		{ label: "Portuguese", value: "pt" },
+		{ label: "Russian", value: "ru" },
+		{ label: "Japanese", value: "ja" },
+		{ label: "Korean", value: "ko" },
+		{ label: "Chinese", value: "zh" },
 	] as const;
 
-	type Language = (typeof languages)[number]['value'];
+	type Language = (typeof languages)[number]["value"];
 
 	export const accountFormSchema = z.object({
 		name: z
 			.string({
-				required_error: 'Required.'
+				required_error: "Required.",
 			})
-			.min(2, 'Name must be at least 2 characters.')
-			.max(30, 'Name must not be longer than 30 characters'),
+			.min(2, "Name must be at least 2 characters.")
+			.max(30, "Name must not be longer than 30 characters"),
 		// Hack: https://github.com/colinhacks/zod/issues/2280
 		language: z.enum(languages.map((lang) => lang.value) as [Language, ...Language[]]),
 		dob: z
@@ -30,42 +30,42 @@
 			// we're setting it optional so the user can clear the date and we don't run into
 			// type issues, but we refine it to make sure it's not undefined
 			.optional()
-			.refine((date) => (date === undefined ? false : true), 'Please select a valid date.')
+			.refine((date) => (date === undefined ? false : true), "Please select a valid date."),
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;
 </script>
 
 <script lang="ts">
-	import CalendarIcon from 'svelte-radix/Calendar.svelte';
-	import CaretSort from 'svelte-radix/CaretSort.svelte';
-	import Check from 'svelte-radix/Check.svelte';
-	import SuperDebug, { type SuperValidated, type Infer, superForm } from 'sveltekit-superforms';
-	import { zodClient } from 'sveltekit-superforms/adapters';
-	import * as Form from '$lib/components/ui/form/index.js';
-	import * as Popover from '$lib/components/ui/popover/index.js';
-	import * as Command from '$lib/components/ui/command/index.js';
-	import { Calendar } from '$lib/components/ui/calendar/index.js';
-	import { Input } from '$lib/components/ui/input/index.js';
-	import { buttonVariants } from '$lib/components/ui/button/index.js';
-	import { cn } from '$lib/utils.js';
-	import { browser } from '$app/environment';
+	import CalendarIcon from "svelte-radix/Calendar.svelte";
+	import CaretSort from "svelte-radix/CaretSort.svelte";
+	import Check from "svelte-radix/Check.svelte";
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+	import { zodClient } from "sveltekit-superforms/adapters";
+	import * as Form from "$lib/components/ui/form/index.js";
+	import * as Popover from "$lib/components/ui/popover/index.js";
+	import * as Command from "$lib/components/ui/command/index.js";
+	import { Calendar } from "$lib/components/ui/calendar/index.js";
+	import { Input } from "$lib/components/ui/input/index.js";
+	import { buttonVariants } from "$lib/components/ui/button/index.js";
+	import { cn } from "$lib/utils.js";
+	import { browser } from "$app/environment";
 	import {
 		DateFormatter,
 		getLocalTimeZone,
 		type DateValue,
-		parseDate
-	} from '@internationalized/date';
+		parseDate,
+	} from "@internationalized/date";
 
 	export let data: SuperValidated<Infer<AccountFormSchema>>;
 
 	const form = superForm(data, {
-		validators: zodClient(accountFormSchema)
+		validators: zodClient(accountFormSchema),
 	});
 	const { form: formData, enhance, validate } = form;
 
-	const df = new DateFormatter('en-US', {
-		dateStyle: 'long'
+	const df = new DateFormatter("en-US", {
+		dateStyle: "long",
 	});
 
 	let dobValue: DateValue | undefined = $formData.dob ? parseDate($formData.dob) : undefined;
@@ -85,14 +85,14 @@
 			<Popover.Root>
 				<Popover.Trigger
 					class={cn(
-						buttonVariants({ variant: 'outline' }),
-						'w-[240px] justify-start text-left font-normal',
-						!dobValue && 'text-muted-foreground'
+						buttonVariants({ variant: "outline" }),
+						"w-[240px] justify-start text-left font-normal",
+						!dobValue && "text-muted-foreground"
 					)}
 					{...attrs}
 				>
 					<CalendarIcon class="mr-2 h-4 w-4" />
-					{dobValue ? df.format(dobValue.toDate(getLocalTimeZone())) : 'Pick a date'}
+					{dobValue ? df.format(dobValue.toDate(getLocalTimeZone())) : "Pick a date"}
 				</Popover.Trigger>
 				<Popover.Content class="w-auto p-0" align="start">
 					<Calendar
@@ -109,11 +109,11 @@
 						onValueChange={(value) => {
 							if (value === undefined) {
 								$formData.dob = undefined;
-								validate('dob');
+								validate("dob");
 								return;
 							}
 							$formData.dob = value.toDate(getLocalTimeZone()).toISOString();
-							validate('dob');
+							validate("dob");
 						}}
 					/>
 				</Popover.Content>
@@ -130,14 +130,14 @@
 				<Popover.Trigger
 					role="combobox"
 					class={cn(
-						buttonVariants({ variant: 'outline' }),
-						'w-[200px] justify-between',
-						!$formData.language && 'text-muted-foreground'
+						buttonVariants({ variant: "outline" }),
+						"w-[200px] justify-between",
+						!$formData.language && "text-muted-foreground"
 					)}
 					{...attrs}
 				>
 					{languages.find((lang) => lang.value === $formData.language)?.label ||
-						'Select a language'}
+						"Select a language"}
 					<CaretSort class="ml-2 size-4 shrink-0 opacity-50" />
 				</Popover.Trigger>
 				<input hidden value={$formData.language} name={attrs.name} />
@@ -153,13 +153,15 @@
 								value={language.label}
 								onSelect={() => {
 									$formData.language = language.value;
-									validate('language');
+									validate("language");
 								}}
 							>
 								<Check
 									class={cn(
-										'mr-2 size-4',
-										language.value === $formData.language ? 'opacity-100' : 'opacity-0'
+										"mr-2 size-4",
+										language.value === $formData.language
+											? "opacity-100"
+											: "opacity-0"
 									)}
 								/>
 								{language.label}

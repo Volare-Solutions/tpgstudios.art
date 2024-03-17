@@ -1,12 +1,12 @@
-import { superValidate } from 'sveltekit-superforms';
-import { zod } from 'sveltekit-superforms/adapters';
-import type { PageServerLoad } from './$types.js';
-import { notificationsFormSchema } from './notifications-form.svelte';
-import { fail, type Actions } from '@sveltejs/kit';
+import { superValidate } from "sveltekit-superforms";
+import { zod } from "sveltekit-superforms/adapters";
+import type { PageServerLoad } from "./$types.js";
+import { notificationsFormSchema } from "./notifications-form.svelte";
+import { fail, type Actions } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async () => {
 	return {
-		form: await superValidate(zod(notificationsFormSchema))
+		form: await superValidate(zod(notificationsFormSchema)),
 	};
 };
 
@@ -15,11 +15,11 @@ export const actions: Actions = {
 		const form = await superValidate(event, zod(notificationsFormSchema));
 		if (!form.valid) {
 			return fail(400, {
-				form
+				form,
 			});
 		}
 		return {
-			form
+			form,
 		};
-	}
+	},
 };
