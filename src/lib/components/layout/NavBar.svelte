@@ -26,6 +26,11 @@
 		id: string;
 		name: string;
 	}[];
+
+	export let tags: {
+		name: string;
+		active: boolean;
+	}[];
 </script>
 
 <nav
@@ -66,19 +71,15 @@
 			<a href="/products" class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura"
 				>All Pieces</a
 			>
-			<a
-				href="/products?tag=Watch This Drive"
-				class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura"
-				>Drive Collection</a
-			>
-			<a
-				href="/products?tag=Eyes On The Ball"
-				class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura">Eye Collection</a
-			>
-			<a
-				href="/products?tag=Grow The Game"
-				class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura">Grow Collection</a
-			>
+			{#each tags as tag}
+				{#if tag.active}
+				<a
+					href={`/products?tag=${tag.name}`}
+					class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura"
+					>{tag.name}</a
+				>
+				{/if}
+			{/each}
 		</div>
 	</div>
 
@@ -104,7 +105,6 @@
 				<path d="M7 21.7705L12 33.2288L17 21.7705H7Z" fill="black" />
 			</svg>
 		</a>
-		<a href="/about/faq" class="text-black uppercase font-jura flex flex-row items-center"> FAQ </a>
 		{#if user}
 			<a href="/profile">
 				<svg

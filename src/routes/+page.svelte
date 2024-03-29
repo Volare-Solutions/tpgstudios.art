@@ -79,30 +79,6 @@
 			src={mobileImgs[imgNum]}
 		/> -->
 	</div>
-	<div class="w-full flex flex-col py-4 px-2 bg-black text-white">
-		<h3 class="text-center font-jura text-5xl pb-8 px-3">Who we are</h3>
-		<p class="text-center text-lg font-light pb-4 px-3">
-			We design minimalist golf streetwear that combines the elegance of golf with the edge of
-			street style.
-		</p>
-
-		<p class="text-center text-lg font-light pb-8">
-			Our pieces are made to order, delivering unique style right to your door.
-		</p>
-	</div>
-	<div class="w-full md:w-3/4 m-auto">
-		<h2 class="font-jura sm:text-4xl text-3xl text-center pt-8 pb-4">The Love of the Game</h2>
-		<p class="text-lg text-center px-4 md:px-16 font-light">
-			Our brand is built on a deep love for golf. We believe in the elegance of the game, the
-			camaraderie it fosters, and the quiet moments of focus it demands. Our minimalist golf
-			streetwear is designed to reflect these values.
-		</p>
-		<h2 class="font-jura sm:text-4xl text-3xl text-center pt-8 pb-4">Our Process</h2>
-		<p class="text-lg text-center px-4 md:px-16 font-light pb-8">
-			Each piece is made to order, ensuring a perfect fit and unique style. Once you place an order,
-			we create your piece, package it with care, and send it directly to your door.
-		</p>
-	</div>
 	{#each data.collections as collection}
 		<ImageCollection collectionData={collection} />
 	{/each}

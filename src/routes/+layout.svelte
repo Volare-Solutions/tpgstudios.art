@@ -84,7 +84,7 @@
 		</Alert.Root>
 	</div>
 	<SpecialOffer isSoldOut={data.isSoldOut} remaining={data.numberLeft} />
-	<NavBar user={data.user} pieces={data.pieces} />
+	<NavBar user={data.user} pieces={data.pieces} tags={data.tags}/>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<span on:mouseenter={handleRemoveMenu} class="grow bg-neutral-100">
 		<slot />

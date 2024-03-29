@@ -103,7 +103,8 @@ export const productToProductTagRelations = relations(productToProductTag, ({ on
 
 export const productTag = pgTable('product_tag', {
 	name: text('name').primaryKey(),
-	desc: text('desc').notNull()
+	desc: text('desc').notNull(),
+	active: boolean('active').notNull().default(true)
 });
 
 export const productTagRelations = relations(productTag, ({ many }) => ({

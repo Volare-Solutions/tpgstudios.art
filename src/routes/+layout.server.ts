@@ -48,11 +48,19 @@ export const load = async ({ locals }) => {
 		})
 		.from(product);
 
+	const tags = await db
+		.select({
+			name: productTag.name,
+			active: productTag.active
+		})
+		.from(productTag);
+
 	return {
 		user: locals.user,
 		collections: reducedCollections,
 		isSoldOut: orders.length >= 10,
 		numberLeft: 10 - orders.length,
-		pieces
+		pieces,
+		tags
 	};
 };
