@@ -21,12 +21,24 @@
 <div class="container w-full h-full grow p-4">
     <!-- Mobile Tab Navigation -->
     <div class="mobile-nav w-full flex justify-around border-b-2 mb-4">
+        <a
+			class={`text-lg font-bold p-2 rounded-md ${
+				data.url.includes('/admin/assets') ? 'bg-neutral-100' : ''
+			}`}
+			href="/admin/assets">Assets</a
+		>
         <a class={`text-lg font-bold p-2 rounded-md ${data.url.includes('/admin/products') ? 'bg-neutral-100' : ''}`} href="/admin/products">Products</a>
         <a class={`text-lg font-bold p-2 rounded-md ${data.url.includes('/admin/orders') ? 'bg-neutral-100' : ''}`} href="/admin/orders">Orders</a>
     </div>
 
     <!-- Sidebar Navigation for Desktop -->
     <div class="desktop-nav bg-neutral-200 shadow-xl w-1/6 rounded-md p-4 flex flex-col gap-y-3 items-start mr-4">
+        <a
+			class={`text-lg font-bold  w-full text-start p-2 rounded-md ${
+				data.url.includes('/admin/assets') ? 'bg-neutral-100' : ''
+			}`}
+			href="/admin/assets">Assets</a
+		>
         <a class={`text-lg font-bold w-full text-start p-2 rounded-md ${data.url.includes('/admin/products') ? 'bg-neutral-100' : ''}`} href="/admin/products">Products</a>
         <a class={`text-lg font-bold w-full text-start p-2 rounded-md ${data.url.includes('/admin/orders') ? 'bg-neutral-100' : ''}`} href="/admin/orders">Orders</a>
     </div>

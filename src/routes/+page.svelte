@@ -5,6 +5,8 @@
 	import { CldImage } from 'svelte-cloudinary';
 
 	export let data;
+
+	const { homeTitle, homeSubtitle, desktopHomeImage, mobileHomeImage } = data.asset;
 </script>
 
 <main class="grow">
@@ -17,9 +19,9 @@
 					<div class="flex flex-row gap-4 items-center">
 						<img src={MobileLogo} alt="TPG" class="h-[40px] sm:hidden flex" />
 
-						<h2 class="sm:text-5xl text-3xl font-jura">Drive Collection</h2>
+						<h2 class="sm:text-5xl text-3xl font-jura">{homeTitle}</h2>
 					</div>
-					<h4 class="font-light sm:text-3xl text-xl font-jura">Lifestyle. Elevated.</h4>
+					<h4 class="font-light sm:text-3xl text-xl font-jura">{homeSubtitle}</h4>
 				</div>
 				<a
 					class="uppercase bg-black mt-14 px-7 py-3 font-light"
@@ -47,7 +49,7 @@
 		>
 			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
-				src={'home-main'}
+				src={desktopHomeImage}
 				width={1920}
 				height={900}
 				objectFit="cover"
@@ -60,7 +62,7 @@
 		>
 			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
-				src={'home-vertical'}
+				src={mobileHomeImage}
 				width={700}
 				height={1000}
 				objectFit="cover"

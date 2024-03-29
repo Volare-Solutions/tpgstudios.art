@@ -16,6 +16,16 @@ type SendCollection = {
 	dark: boolean;
 	collectionTag: string;
 };
+
+type Asset = {
+	mobileLogo: string;
+	desktopLogo: string;
+	mobileHomeImage: string;
+	desktopHomeImage: string;
+	homeTitle: string;
+	homeSubtitle: string;
+};
+
 export const load = async () => {
 	const collections = await db.query.productTag.findMany({
 		with: {
@@ -76,5 +86,15 @@ export const load = async () => {
 		}
 	});
 
-	return { collections: sendData };
+	const assetRecord = await db.query.assets.findFirst();
+	const asset: Asset = {
+		mobileLogo: assetRecord?.mobileLogo || '',
+		desktopLogo: assetRecord?.desktopLogo || '',
+		mobileHomeImage: assetRecord?.mobileHomeImage || '',
+		desktopHomeImage: assetRecord?.desktopHomeImage || '',
+		homeTitle: assetRecord?.homeTitle || '',
+		homeSubtitle: assetRecord?.homeSubtitle || ''
+	};
+
+	return { collections: sendData, asset: asset };
 };

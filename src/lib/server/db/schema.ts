@@ -189,3 +189,13 @@ export const orderProductRelations = relations(orderProduct, ({ one }) => ({
 		references: [order.stripeOrderId]
 	})
 }));
+
+export const assets = pgTable('assets', {
+	id: text('id').primaryKey(),
+	desktopLogo: text('desktop_logo').notNull(),
+	mobileLogo: text('mobile_logo').notNull(),
+	desktopHomeImage: text('desktop_home_image').notNull(),
+	mobileHomeImage: text('mobile_home_image').notNull(),
+	homeTitle: text('home_title').notNull(),
+	homeSubtitle: text('home_subtitle').notNull()
+});
