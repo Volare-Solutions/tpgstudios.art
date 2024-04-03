@@ -61,7 +61,7 @@
 				/>
 			</svg>
 		</button>
-		<a href="/products">All Pieces</a>
+		<a href="/collections">Collections</a>
 		{#each data.collections as collection}
 			<div>
 				<a href={'/products?tag=' + collection.collection}>{collection.collection}</a>

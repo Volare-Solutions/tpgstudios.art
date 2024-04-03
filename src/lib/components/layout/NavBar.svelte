@@ -68,9 +68,9 @@
 		</div>
 		<div class="flex flex-col p-6 overflow-y-scroll">
 			<div class="px-4 py-0 rounded-md text-gray-500 font-extralight text-sm">Collections</div>
-			<a href="/products" class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura"
+			<!-- <a href="/products" class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura"
 				>All Pieces</a
-			>
+			> -->
 			{#each tags as tag}
 				{#if tag.active}
 				<a
@@ -90,7 +90,7 @@
 
 	<div class="flex-row items-center hidden sm:flex gap-6">
 		<a
-			href="/products"
+			href="/collections"
 			class="text-black uppercase font-jura flex flex-row items-center"
 			on:mouseenter={handleCollectionsHover}
 		>
@@ -162,7 +162,7 @@
 			</div>
 		</a>
 		{#if user?.isAdmin}
-			<Button variant="link" href="/admin/products">admin</Button>
+			<Button variant="link" href="/admin/assets">admin</Button>
 		{/if}
 	</div>
 	<div class="sm:hidden flex flex-row justify-end gap-3">
