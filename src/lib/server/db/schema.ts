@@ -197,5 +197,6 @@ export const assets = pgTable('assets', {
 	desktopHomeImage: text('desktop_home_image').notNull(),
 	mobileHomeImage: text('mobile_home_image').notNull(),
 	homeTitle: text('home_title').notNull(),
-	homeSubtitle: text('home_subtitle').notNull()
+	homeSubtitle: text('home_subtitle').notNull(),
+	tagLink: text('tag_link').notNull()
 });

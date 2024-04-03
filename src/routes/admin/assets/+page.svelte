@@ -69,7 +69,7 @@
 			<Input
 				name="title"
 				id="title"
-				class="w-full"
+				class="w-full border border-gray-400"
 				type="text"
 				value={data.asset?.homeTitle}
 				on:change={() => (disableUpdate = false)}
@@ -81,9 +81,21 @@
 			<Input
 				name="subtitle"
 				id="subtitle"
-				class="w-full"
+				class="w-full border border-gray-400"
 				type="text"
 				value={data.asset?.homeSubtitle}
+				on:change={() => (disableUpdate = false)}
+			/>
+		</div>
+
+		<div class="gap-1.5 grid mb-4">
+			<Label for="tagLink">Shop Now Route</Label>
+			<Input
+				name="tagLink"
+				id="tagLink"
+				class="w-full border border-gray-400"
+				type="text"
+				value={data.asset?.tagLink}
 				on:change={() => (disableUpdate = false)}
 			/>
 		</div>

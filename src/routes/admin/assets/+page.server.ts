@@ -21,7 +21,8 @@ export const actions = {
 
 		const schema = zfd.formData({
 			title: zfd.text(),
-			subtitle: zfd.text()
+			subtitle: zfd.text(),
+			tagLink: zfd.text()
 		});
 
 		const res = schema.safeParse(data);
@@ -36,6 +37,7 @@ export const actions = {
 			.set({
 				homeTitle: res.data.title,
 				homeSubtitle: res.data.subtitle,
+				tagLink: res.data.tagLink
 			})
 			.where(eq(assets.id, 'main'));
 

@@ -24,6 +24,7 @@ type Asset = {
 	desktopHomeImage: string;
 	homeTitle: string;
 	homeSubtitle: string;
+	tagLink: string;
 };
 
 export const load = async () => {
@@ -93,7 +94,8 @@ export const load = async () => {
 		mobileHomeImage: assetRecord?.mobileHomeImage || '',
 		desktopHomeImage: assetRecord?.desktopHomeImage || '',
 		homeTitle: assetRecord?.homeTitle || '',
-		homeSubtitle: assetRecord?.homeSubtitle || ''
+		homeSubtitle: assetRecord?.homeSubtitle || '',
+		tagLink: assetRecord?.tagLink || ''
 	};
 
 	return { collections: sendData, asset: asset };
