@@ -32,6 +32,20 @@
 	function handleSetTopScroll(idx: number) {
 		scrollSection.scrollLeft = idx * window.screen.width;
 	}
+
+	function sizeToNumber(size: string) {
+		switch (size) {
+			case 'XS': return 1;
+			case 'S': return 2;
+			case 'M': return 3;
+			case 'L': return 4;
+			case 'XL': return 5;
+			case 'XXL': return 6;
+			default: return 7;
+		}
+	}
+
+	data.product.sizes.sort((a, b) => sizeToNumber(a.size) - sizeToNumber(b.size));
 </script>
 
 <!-- TODO: handle this img error -->
@@ -151,7 +165,7 @@
 				<span class=" text-2xl text-gray-500 font-jura">Which one fits you best?</span>
 			</div>
 
-			{#each data.product.sizes as size, i}
+			{#each data.product.sizes.sort((a, b) => sizeToNumber(a.size) - sizeToNumber(b.size)) as size, i}
 				<div
 					class={`${
 						size.isAvailable ? '' : 'opacity-50 pointer-events-none'

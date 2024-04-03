@@ -134,6 +134,7 @@
 			id="name"
 			type="text"
 			placeholder="My Tag"
+			class="w-full border border-gray-400"
 			bind:value={searchQuery}
 		/>
 
@@ -163,14 +164,14 @@
 		{/if}
 	</div>
 
-	<Table.Root>
+	<Table.Root class="border border-gray-400">
 		<Table.Header>
 			<Table.Row>
 				<Table.Head class="w-[250px]">Tag Name</Table.Head>
 				<Table.Head class="">Tag Description</Table.Head>
 			</Table.Row>
 		</Table.Header>
-		<Table.Body>
+		<Table.Body class="border border-gray-400">
 			{#each data.tagsSelected as tagSelected, i}
 				<Table.Row>
 					<Table.Cell class="font-medium">{tagSelected.name}</Table.Cell>

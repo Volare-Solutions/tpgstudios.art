@@ -124,18 +124,6 @@
 					</div>
 
 					<div class="gap-1.5 grid">
-						<Label for="stripePriceId">Stripe Price Id</Label>
-						<Input
-							name="stripePriceId"
-							required
-							id="stripePriceId"
-							class="w-full"
-							type="text"
-							placeholder="stripe1234..."
-						/>
-					</div>
-
-					<div class="gap-1.5 grid">
 						<Label for="stripeProductId">Stripe Product Id</Label>
 						<Input
 							name="stripeProductId"
@@ -143,7 +131,19 @@
 							id="stripeProductId"
 							class="w-full"
 							type="text"
-							placeholder="stripe1234..."
+							placeholder="prod1234..."
+						/>
+					</div>
+
+					<div class="gap-1.5 grid">
+						<Label for="stripePriceId">Stripe Price Id</Label>
+						<Input
+							name="stripePriceId"
+							required
+							id="stripePriceId"
+							class="w-full"
+							type="text"
+							placeholder="price1234..."
 						/>
 					</div>
 

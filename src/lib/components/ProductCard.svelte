@@ -61,6 +61,18 @@
 			goto(href);
 		}
 	}
+
+	function sizeToNumber(size: string) {
+		switch (size) {
+			case 'XS': return 1;
+			case 'S': return 2;
+			case 'M': return 3;
+			case 'L': return 4;
+			case 'XL': return 5;
+			case 'XXL': return 6;
+			default: return 7;
+		}
+	}
 </script>
 
 <div
@@ -87,7 +99,7 @@
 		<!-- <div class=" text-gray-400 text-md w-[45%] text-ellipsis overflow-hidden leading-5 max-h-[5rem] line-clamp-4">{itemData.desc}{itemData.desc}{itemData.desc}{itemData.desc}{itemData.desc}</div> -->
 	</div>
 	<div class="absolute bottom-5 left-5 flex flex-row items-end">
-		{#each itemData.sizes as size}
+		{#each itemData.sizes.sort((a, b) => sizeToNumber(a.size) - sizeToNumber(b.size)) as size}
 			<button
 				disabled={!size.isAvailable}
 				on:click={() => {
