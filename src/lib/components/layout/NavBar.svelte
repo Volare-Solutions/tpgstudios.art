@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import Logo from '$lib/client/images/new-logo.png';
-	import MobileLogo from '$lib/client/images/new-logo.png';
+	import Logo from '$lib/client/images/black-logo.png';
+	import MobileLogo from '$lib/client/images/black-logo.png';
 	import { CldImage } from 'svelte-cloudinary';
 	import { cartLengthStore } from '$lib/client/cart';
 	export let user: {
@@ -84,7 +84,7 @@
 	</div>
 
 	<a class="text-4xl font-light mx-auto sm:mx-0" href="/">
-		<img src={Logo} alt="TPG" class=" h-[70px] hidden sm:flex" />
+		<img src={Logo} alt="TPG" class=" h-[80px] hidden sm:flex" />
 		<img src={MobileLogo} alt="TPG" class="h-[70px] sm:hidden flex" />
 	</a>
 
