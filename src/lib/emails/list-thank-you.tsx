@@ -52,10 +52,10 @@ export const ListThankYou = ({ unsubKey, email }: ListThankYouProps) => {
 						</Text>
 
 						<Text className="text-black text-[12px] leading-[4px] pt-4">Best,</Text>
-						<Text className="text-black text-[12px] leading-[4px] ml-1">Grayson Crozier</Text>
-						<Text className="text-black text-[12px] leading-[4px] ml-1 italic">
+						<Text className="text-black text-[12px] leading-[4px] ml-1">TPG Studios Team</Text>
+						{/* <Text className="text-black text-[12px] leading-[4px] ml-1 italic">
 							TPG Studios Team
-						</Text>
+						</Text> */}
 						<Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
 						<Link
 							className="text-[#666666] text-[12px] leading-[24px]"

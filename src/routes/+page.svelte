@@ -1,21 +1,8 @@
 <script lang="ts">
 	import MobileLogo from '$lib/client/images/mobile_logo.png';
 	import ImageCollection from '$lib/components/ImageCollection.svelte';
-
 	import { CldImage } from 'svelte-cloudinary';
-
-	import { onMount } from 'svelte';
-    import SpecialOfferModal from '$lib/components/SpecialOffer.svelte';
-
-    let showModal = false;
-
-    onMount(() => {
-        showModal = true;
-    });
-
-    const close = () => {
-        showModal = false;
-    };
+	import SpecialOffer from '$lib/components/SpecialOffer.svelte';
 
 	export let data;
 
@@ -23,6 +10,7 @@
 </script>
 
 <main class="grow">
+	<SpecialOffer />
 	<div class=" w-full relative">
 		<div
 			class="z-10 absolute top-[40%] left-0 w-full flex justify-center items-center flex-col gap-y-2"

@@ -1,8 +1,7 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import NavBar from '$lib/components/layout/NavBar.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
-	import SpecialOffer from '$lib/components/SpecialOffer.svelte';
 	import { navigating } from '$app/stores';
 	import { CldOgImage } from 'svelte-cloudinary';
 	import { fade } from 'svelte/transition';
@@ -29,16 +28,6 @@
 		handleRemoveMenu();
 		handleRemoveMobile();
 	}
-
-	let showModal = false;
-
-    if (typeof window !== 'undefined') {
-        // Show the modal only if the user hasn't seen it yet
-        if (!sessionStorage.getItem('hasSeenModal')) {
-            showModal = true;
-            sessionStorage.setItem('hasSeenModal', 'true');
-        }
-    }
 </script>
 
 <svelte:head>
@@ -93,7 +82,6 @@
 			<Alert.Description>Please proceed to the cart to checkout.</Alert.Description>
 		</Alert.Root>
 	</div>
-	<SpecialOffer isSoldOut={data.isSoldOut} remaining={data.numberLeft} {showModal} />
 	<NavBar user={data.user} pieces={data.pieces} tags={data.tags}/>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<span on:mouseenter={handleRemoveMenu} class="grow bg-neutral-100">

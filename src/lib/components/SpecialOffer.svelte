@@ -17,12 +17,19 @@
 	import Input from './ui/input/input.svelte';
 	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
     import { zodClient } from "sveltekit-superforms/adapters";
+	import { enhance } from '$app/forms';
+	import { Check, AlertTriangle } from 'lucide-svelte';
+	import * as Alert from '$lib/components/ui/alert';
+	import { fade } from 'svelte/transition';
 
-	export let showModal = false;
+	let showModal = false;
+	let showSuccess = false;
+	let showError = false;
+	let errorMessage = '';
 
-	export let isSoldOut: boolean;
+	// export let isSoldOut: boolean;
 
-	export let remaining: number;
+	// export let remaining: number;
 
 	let data = {
 		email: '',
@@ -33,16 +40,22 @@
 	const form = superForm(data, {
 		validators: zodClient(emailFormSchema),
 	});
-	const { form: formData, enhance, validate, submit } = form;
+	const { form: formData } = form;
 
 	let isMobile = false;
 
     if (typeof window !== 'undefined') {
         isMobile = window.innerWidth <= 768; // Adjust this value based on your mobile breakpoint
+
+		// Show the modal only if the user hasn't seen it yet
+		if (!sessionStorage.getItem('hasSeenModal')) {
+			showModal = true;
+			sessionStorage.setItem('hasSeenModal', 'true');
+		}
     }
 </script>
 
-<button
+<!-- <button
 	type="button"
 	class="bg-gray-950 text-center text-white font-jura uppercase p-1 sm:text-lg text-sm sticky w-full top-[-100px]"
 	on:click={() => (showModal = true)}
@@ -52,7 +65,7 @@
 	{:else}
 		Launch event, only {remaining} pieces available, order now!
 	{/if}
-</button>
+</button> -->
 
 {#if showModal}
 	<div class="absolute w-screen h-screen z-40 bg-neutral-950 bg-opacity-90">
@@ -62,7 +75,6 @@
 		>
 			<div class="md:w-1/2 h-full">
 				{#if !isMobile}
-					<!-- CLD IMAGE SWITCH NEEDED -->
 					<CldImage src={'Logos/grqj2osxgbbbk6bduzhq'} width={1000} height={1000} objectFit="cover" />
 				{/if}
 			</div>
@@ -82,7 +94,24 @@
 					<h2 class="text-xl">Sign up for exclusive offers and updates</h2>
 				</div>
 
-				<form method="POST" class="space-y-8" use:enhance >
+				<form method="POST" action="?/email" class="space-y-8" use:enhance={() => {
+					return ({ result }) => {
+						if (result.type === 'success') {
+							showSuccess = true;
+							setTimeout(() => {
+								showSuccess = false;
+							}, 3000);
+							showModal = false;
+						}
+						if (result.type === 'failure') {
+							errorMessage = String(result.data?.error);
+							showError = true;
+							setTimeout(() => {
+								showError = false;
+							}, 3000);
+						}
+					};
+				}}>
 					<Form.Field name="email" {form}>
 						<Form.Control let:attrs>
 							<Form.Label>Email</Form.Label>
@@ -116,6 +145,30 @@
 					<Form.Button>Submit</Form.Button>
 				</form>
 			</div>
+		</div>
+	</div>
+{/if}
+
+{#if showSuccess}
+	<div class="absolute md:bottom-8 md:right-8 w-full md:w-[500px] z-50 flex justify-center md:block" transition:fade>
+		<div class="w-[90%] md:w-full">
+			<Alert.Root>
+				<Check class="h-4 w-4" />
+				<Alert.Title>Success!</Alert.Title>
+				<Alert.Description>Thank you for joining our mailing list.</Alert.Description>
+			</Alert.Root>
+		</div>
+	</div>
+{/if}
+
+{#if showError}
+	<div class="absolute md:bottom-8 md:right-8 w-full md:w-[500px] z-50 flex justify-center md:block" transition:fade>
+		<div class="w-[90%] md:w-full">
+			<Alert.Root>
+				<AlertTriangle class="h-4 w-4" />
+				<Alert.Title>Error!</Alert.Title>
+				<Alert.Description>{errorMessage}</Alert.Description>
+			</Alert.Root>
 		</div>
 	</div>
 {/if}

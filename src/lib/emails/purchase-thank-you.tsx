@@ -44,8 +44,8 @@ export const PurchaseThankYou = () => {
 							arrives.
 						</Text>
 						<Text className="text-black text-[14px] leading-[24px]">
-							We use Fracture for our fulfillment, so your package will arrive in Fracture
-							packaging, as they have the best systems in place for keeping your glass pristine!
+							We use FedEx for our fulfillment, so your package will arrive in FedEx
+							packaging, as they have the best systems in place for keeping your clothing pristine!
 						</Text>
 
 						<Text className="text-black text-[14px] leading-[24px]">
@@ -54,10 +54,10 @@ export const PurchaseThankYou = () => {
 						</Text>
 
 						<Text className="text-black text-[12px] leading-[4px] pt-4">Best,</Text>
-						<Text className="text-black text-[12px] leading-[4px] ml-1">Grayson Crozier</Text>
-						<Text className="text-black text-[12px] leading-[4px] ml-1 italic">
+						<Text className="text-black text-[12px] leading-[4px] ml-1">TPG Studios Team</Text>
+						{/* <Text className="text-black text-[12px] leading-[4px] ml-1 italic">
 							TPG Studios Team
-						</Text>
+						</Text> */}
 					</Container>
 				</Body>
 			</Tailwind>

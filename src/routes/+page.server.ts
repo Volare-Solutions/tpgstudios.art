@@ -1,6 +1,5 @@
 import { db } from '$lib/server/db';
 import { productImage } from '$lib/server/db/schema';
-import { desc } from 'drizzle-orm';
 import { zod } from 'sveltekit-superforms/adapters';
 import { emailFormSchema } from '$lib/components/SpecialOffer.svelte';
 import { superValidate } from "sveltekit-superforms";
@@ -8,6 +7,7 @@ import { fail, type Actions } from "@sveltejs/kit";
 import { emailList } from '$lib/server/db/schema';
 import { generateId } from 'lucia';
 import { sendThankYouListEmail } from '$lib/server/resend';
+import { desc, eq } from 'drizzle-orm';
 
 type SendCollection = {
 	name: string;
@@ -35,7 +35,7 @@ type Asset = {
 };
 
 export const actions: Actions = {
-	default: async (event) => {
+	email: async (event) => {
 		const form = await superValidate(event, zod(emailFormSchema));
 		if (!form.valid) {
 			return fail(400, {
@@ -45,21 +45,30 @@ export const actions: Actions = {
 
 		const key = generateId(20);
 
+		// Check if email already exists
+		const existingEmail = await db.select().from(emailList).where(eq(emailList.email, form.data.email));
+		if (existingEmail.length > 0) {
+			return fail(400, {
+				error: 'Email already exists',
+			});
+		}
+
 		// Database operation to store user email
-        await db.insert(emailList).values({
+		await db.insert(emailList).values({
 			key,
-            email: form.data.email,
-            phoneNumber: form.data.phoneNumber,
-            shirtSize: form.data.shirtSize,
-            subscribedAt: new Date()
-        });
+			email: form.data.email,
+			phoneNumber: form.data.phoneNumber,
+			shirtSize: form.data.shirtSize,
+			subscribedAt: new Date()
+		});
 
 		await sendThankYouListEmail(form.data.email, key);
 
 		return {
+			success: true,
 			form,
 		};
-	}
+	},
 };
 
 export const load = async () => {
