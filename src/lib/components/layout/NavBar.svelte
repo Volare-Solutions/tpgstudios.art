@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import Logo from '$lib/client/images/tps.png';
-	import MobileLogo from '$lib/client/images/tps.png';
+	import Logo from '$lib/client/images/new-logo.png';
+	import MobileLogo from '$lib/client/images/new-logo.png';
 	import { CldImage } from 'svelte-cloudinary';
 	import { cartLengthStore } from '$lib/client/cart';
 	export let user: {
@@ -51,7 +51,7 @@
 			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
 				width={400}
-				src={'retro-logo' || 'https://via.placeholder.com/355x200'}
+				src={'Logos/grqj2osxgbbbk6bduzhq' || 'https://via.placeholder.com/355x200'}
 				alt="Description of my image"
 				class="shadow-md"
 				style="object-fit: contain;"
