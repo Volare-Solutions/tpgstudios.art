@@ -71,6 +71,13 @@
       "when": 1712103187016,
       "tag": "0009_real_enchantress",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1713742590222,
+      "tag": "0010_lush_wild_pack",
+      "breakpoints": true
     }
   ]
 }

@@ -1,6 +1,13 @@
 import { db } from '$lib/server/db';
 import { productImage } from '$lib/server/db/schema';
 import { desc } from 'drizzle-orm';
+import { zod } from 'sveltekit-superforms/adapters';
+import { emailFormSchema } from '$lib/components/SpecialOffer.svelte';
+import { superValidate } from "sveltekit-superforms";
+import { fail, type Actions } from "@sveltejs/kit";
+import { emailList } from '$lib/server/db/schema';
+import { generateId } from 'lucia';
+import { sendThankYouListEmail } from '$lib/server/resend';
 
 type SendCollection = {
 	name: string;
@@ -25,6 +32,34 @@ type Asset = {
 	homeTitle: string;
 	homeSubtitle: string;
 	tagLink: string;
+};
+
+export const actions: Actions = {
+	default: async (event) => {
+		const form = await superValidate(event, zod(emailFormSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form,
+			});
+		}
+
+		const key = generateId(20);
+
+		// Database operation to store user email
+        await db.insert(emailList).values({
+			key,
+            email: form.data.email,
+            phoneNumber: form.data.phoneNumber,
+            shirtSize: form.data.shirtSize,
+            subscribedAt: new Date()
+        });
+
+		await sendThankYouListEmail(form.data.email, key);
+
+		return {
+			form,
+		};
+	}
 };
 
 export const load = async () => {

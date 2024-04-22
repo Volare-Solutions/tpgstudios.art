@@ -1,14 +1,45 @@
+<script lang="ts" context="module">
+    import { z } from "zod";
+
+    export const emailFormSchema = z.object({
+        email: z.string().email(),
+        phoneNumber: z.string().min(10),
+        shirtSize: z.enum(["S", "M", "L", "XL"]),
+    });
+
+    export type EmailFormSchema = typeof emailFormSchema;
+</script>
+
 <script lang="ts">
 	import { CldImage } from 'svelte-cloudinary';
 	import { X } from 'lucide-svelte';
-	import { Button } from '$lib/components/ui/button';
-	import { goto } from '$app/navigation';
+	import * as Form from "$lib/components/ui/form/index.js";
+	import Input from './ui/input/input.svelte';
+	import SuperDebug, { type SuperValidated, type Infer, superForm } from "sveltekit-superforms";
+    import { zodClient } from "sveltekit-superforms/adapters";
 
-	let showModal = false;
+	export let showModal = false;
 
 	export let isSoldOut: boolean;
 
 	export let remaining: number;
+
+	let data = {
+		email: '',
+		phoneNumber: '',
+		shirtSize: ''
+	};
+
+	const form = superForm(data, {
+		validators: zodClient(emailFormSchema),
+	});
+	const { form: formData, enhance, validate, submit } = form;
+
+	let isMobile = false;
+
+    if (typeof window !== 'undefined') {
+        isMobile = window.innerWidth <= 768; // Adjust this value based on your mobile breakpoint
+    }
 </script>
 
 <button
@@ -30,8 +61,10 @@
 			class="flex shadow-md rounded-lg overflow-hidden md:w-3/5 bg-white z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-auto w-full flex-col md:flex-row"
 		>
 			<div class="md:w-1/2">
-				<!-- CLD IMAGE SWITCH NEEDED -->
-				<CldImage src={'retro-logo'} width={1000} height={1000} objectFit="cover" />
+				{#if !isMobile}
+					<!-- CLD IMAGE SWITCH NEEDED -->
+					<CldImage src={'retro-logo'} width={1000} height={1000} objectFit="cover" />
+				{/if}
 			</div>
 
 			<div class="md:w-1/2 p-4 flex flex-col">
@@ -44,42 +77,44 @@
 					</button>
 				</div>
 
-				{#if isSoldOut}
-					<div class="grow flex flex-col gap-4 justify-center px-6">
-						<h3 class="text-lg font-bold">Sold Out!</h3>
+				<div class="text-center mb-8">
+					<h1 class="text-2xl font-bold">Join Our Mailing List</h1>
+					<h2 class="text-xl">Sign up for exclusive offers and updates</h2>
+				</div>
 
-						<p>Cohort 1 of TPG Studios has sold out, but there will be more!</p>
-						<p>Sign up to get updated on when we are back in stock!</p>
-						<div>
-							<Button
-								on:click={() => {
-									showModal = false;
-									goto('/auth/list');
-								}}
-								variant="outline">Get Notified</Button
-							>
-						</div>
-					</div>
-				{:else}
-					<div class="grow flex flex-col gap-4 justify-center px-6">
-						<h3 class="text-lg font-bold">Launch Event!</h3>
-
-						<p>
-							TPG Studios is live, our first run of cohort 1 will only have 10 orders available, so
-							make sure to order soon!
-						</p>
-						<p>Every order of a Medium size (11x14 or 11x11) will receive free exclusive print!</p>
-						<div>
-							<Button
-								on:click={() => {
-									showModal = false;
-									goto('/products');
-								}}
-								variant="outline">View Pieces</Button
-							>
-						</div>
-					</div>
-				{/if}
+				<form method="POST" class="space-y-8" use:enhance >
+					<Form.Field name="email" {form}>
+						<Form.Control let:attrs>
+							<Form.Label>Email</Form.Label>
+							<Input {...attrs} bind:value={$formData.email} />
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+				
+					<Form.Field name="phoneNumber" {form}>
+						<Form.Control let:attrs>
+							<Form.Label>Phone Number</Form.Label>
+							<Input {...attrs} bind:value={$formData.phoneNumber} />
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+				
+					<Form.Field name="shirtSize" {form}>
+						<Form.Control let:attrs>
+							<Form.Label>Shirt Size</Form.Label>
+							<select {...attrs} bind:value={$formData.shirtSize}>
+								<option value="">Select size</option>
+								<option value="S">Small</option>
+								<option value="M">Medium</option>
+								<option value="L">Large</option>
+								<option value="XL">Extra Large</option>
+							</select>
+						</Form.Control>
+						<Form.FieldErrors />
+					</Form.Field>
+				
+					<Form.Button>Submit</Form.Button>
+				</form>
 			</div>
 		</div>
 	</div>

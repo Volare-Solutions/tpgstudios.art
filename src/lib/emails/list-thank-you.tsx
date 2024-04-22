@@ -32,7 +32,7 @@ export const ListThankYou = ({ unsubKey, email }: ListThankYouProps) => {
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
 						<Section className="mt-[32px]">
 							<Img
-								src="https://res.cloudinary.com/da8eapr4u/image/upload/v1709570118/logo-no-bg.png"
+								src="https://res.cloudinary.com/da8eapr4u/image/upload/v1709570118/Logos/svgc9kifwk7zk9uhe5su"
 								alt="TPG Studios"
 								width="200"
 								className="my-0 mx-auto"
@@ -40,7 +40,7 @@ export const ListThankYou = ({ unsubKey, email }: ListThankYouProps) => {
 						</Section>
 						<Text className="text-black text-[14px] leading-[24px]">Welcome to TPG Studios! </Text>
 						<Text className="text-black text-[14px] leading-[24px]">
-							Dive into a world of stylish golf apparel, designed for comfort and performance.
+							Dive into a world of stylish golf apparel, designed for comfort.
 						</Text>
 						<Text className="text-black text-[14px] leading-[24px]">
 							We'll keep you updated with our latest collections and exclusive offers!

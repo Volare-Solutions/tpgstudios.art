@@ -52,6 +52,8 @@ export const emailList = pgTable('email_list', {
 	email: text('email').primaryKey(),
 	subscribedAt: timestamp('subscribed_at').notNull(),
 	unsubscribedAt: timestamp('unsubscribed_at'),
+	phoneNumber: text('phone_number'),
+	shirtSize: text('shirt_size'),
 	key: text('key').notNull()
 });
 

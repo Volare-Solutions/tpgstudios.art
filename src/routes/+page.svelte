@@ -4,6 +4,19 @@
 
 	import { CldImage } from 'svelte-cloudinary';
 
+	import { onMount } from 'svelte';
+    import SpecialOfferModal from '$lib/components/SpecialOffer.svelte';
+
+    let showModal = false;
+
+    onMount(() => {
+        showModal = true;
+    });
+
+    const close = () => {
+        showModal = false;
+    };
+
 	export let data;
 
 	const { homeTitle, homeSubtitle, desktopHomeImage, mobileHomeImage, tagLink } = data.asset;
