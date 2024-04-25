@@ -43,7 +43,7 @@
 		<div
 			class="flex flex-row items-center gap-1 text-neutral-500 md:text-2xl sm:text-xl sm:font-light"
 		>
-			<div>All orders over $125.00 will receive free shipping!</div>
+			<div>All orders will receive free shipping!</div>
 		</div>
 	{:else}
 		<div
