@@ -32,13 +32,12 @@
 
 <svelte:head>
 	<title>TPG Studios</title>
-	<meta name="description" content="TPG Studios, beauty crystalized and shipped straight to you." />
+	<meta name="description" content="TPG Studios, 100% American made golf streetwear." />
 </svelte:head>
 
 <CldOgImage
-	src="bag-and-clubs"
+	src="Logos/svgc9kifwk7zk9uhe5su"
 	alt="TPG Studios, Streetwear"
-	twitterTitle="TPG Studios, Streetwear"
 />
 
 <body class="flex justify-between w-full flex-col min-h-screen">
