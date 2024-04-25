@@ -14,7 +14,7 @@
 	let formElement: HTMLFormElement;
 </script>
 
-<div class="flex justify-center mt-24 md:mt-32">
+<div class="flex justify-center mt-12 md:mt-32">
 	<Card.Root class="w-[400px] mb-12">
 		<Card.Header>
 			<Card.Title>Email List</Card.Title>
