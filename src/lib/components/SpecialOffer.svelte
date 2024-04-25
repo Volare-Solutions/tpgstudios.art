@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+	import { onMount, onDestroy } from 'svelte';
 	import { CldImage } from 'svelte-cloudinary';
 	import { X } from 'lucide-svelte';
 	import * as Form from "$lib/components/ui/form/index.js";
@@ -26,6 +27,8 @@
 	let showSuccess = false;
 	let showError = false;
 	let errorMessage = '';
+	let isMobile = false;
+	let body: HTMLElement | null = null;
 
 	// export let isSoldOut: boolean;
 
@@ -42,17 +45,37 @@
 	});
 	const { form: formData } = form;
 
-	let isMobile = false;
-
     if (typeof window !== 'undefined') {
         isMobile = window.innerWidth <= 768; // Adjust this value based on your mobile breakpoint
 
-		// Show the modal only if the user hasn't seen it yet
-		if (!sessionStorage.getItem('hasSeenModal')) {
-			showModal = true;
-			sessionStorage.setItem('hasSeenModal', 'true');
-		}
+        // Show the modal only if the user hasn't seen it yet
+        if (!sessionStorage.getItem('hasSeenModal')) {
+            setTimeout(() => {
+                showModal = true;
+            }, 1000);
+            sessionStorage.setItem('hasSeenModal', 'true');
+        }
     }
+
+    onMount(() => {
+        body = document.querySelector('body');
+    });
+
+    $: {
+        if (body) {
+            if (showModal) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = 'auto';
+            }
+        }
+    }
+
+    onDestroy(() => {
+        if (body) {
+            body.style.overflow = 'auto';
+        }
+    });
 </script>
 
 <!-- <button
@@ -68,7 +91,7 @@
 </button> -->
 
 {#if showModal}
-	<div class="absolute w-screen h-screen z-40 bg-neutral-950 bg-opacity-90">
+	<div class="fixed inset-0 flex items-center justify-center z-40 bg-neutral-950 bg-opacity-90" transition:fade>
 		<button on:click={() => (showModal = false)} class="w-full h-full absolute" />
 		<div
 			class="flex shadow-md rounded-lg overflow-hidden md:w-3/5 bg-white z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-auto w-full flex-col md:flex-row"
