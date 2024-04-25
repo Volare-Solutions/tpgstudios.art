@@ -173,7 +173,7 @@
 {/if}
 
 {#if showSuccess}
-	<div class="absolute md:bottom-8 md:right-8 w-full md:w-[500px] z-50 flex justify-center md:block" transition:fade>
+	<div class="absolute bottom-20 md:bottom-8 md:right-8 w-full md:w-[500px] z-50 flex justify-center md:block" transition:fade>
 		<div class="w-[90%] md:w-full">
 			<Alert.Root>
 				<Check class="h-4 w-4" />
@@ -185,7 +185,7 @@
 {/if}
 
 {#if showError}
-	<div class="absolute md:bottom-8 md:right-8 w-full md:w-[500px] z-50 flex justify-center md:block" transition:fade>
+	<div class="absolute bottom-20 md:bottom-8 md:right-8 w-full md:w-[500px] z-50 flex justify-center md:block" transition:fade>
 		<div class="w-[90%] md:w-full">
 			<Alert.Root>
 				<AlertTriangle class="h-4 w-4" />
