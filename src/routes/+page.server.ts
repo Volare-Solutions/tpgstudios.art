@@ -40,6 +40,7 @@ export const actions: Actions = {
 		if (!form.valid) {
 			return fail(400, {
 				form,
+				error: 'Invalid form submission',
 			});
 		}
 
@@ -49,6 +50,7 @@ export const actions: Actions = {
 		const existingEmail = await db.select().from(emailList).where(eq(emailList.email, form.data.email));
 		if (existingEmail.length > 0) {
 			return fail(400, {
+				form,
 				error: 'Email already exists',
 			});
 		}
