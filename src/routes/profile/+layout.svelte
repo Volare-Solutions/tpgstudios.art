@@ -5,13 +5,13 @@ import { Separator } from "$lib/components/ui/separator/index.js";
 
 	const sidebarNavItems = [
 		{
-			title: "Account",
+			title: "Profile",
 			href: "/profile/",
 		},
-		{
-			title: "Notifications",
-			href: "/profile/notifications",
-		},
+		// {
+		// 	title: "Notifications",
+		// 	href: "/profile/notifications",
+		// },
 	];
 </script>
 
