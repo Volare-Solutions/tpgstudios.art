@@ -22,10 +22,10 @@
 		menu?.classList.add('opacity-100');
 	};
 
-	export let pieces: {
-		id: string;
-		name: string;
-	}[];
+	// export let pieces: {
+	// 	id: string;
+	// 	name: string;
+	// }[];
 
 	export let tags: {
 		name: string;
@@ -57,7 +57,7 @@
 				style="object-fit: contain;"
 			/>
 		</div>
-		<div class="flex flex-col p-6 overflow-y-scroll">
+		<!-- <div class="flex flex-col p-6 overflow-y-scroll">
 			<div class="px-4 py-0 rounded-md text-gray-500 font-extralight text-sm">Pieces</div>
 			{#each pieces as piece}
 				<a
@@ -65,7 +65,7 @@
 					class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura">{piece.name}</a
 				>
 			{/each}
-		</div>
+		</div> -->
 		<div class="flex flex-col p-6 overflow-y-scroll">
 			<div class="px-4 py-0 rounded-md text-gray-500 font-extralight text-sm">Collections</div>
 			<!-- <a href="/products" class="px-4 py-3 rounded-md hover:text-gray-600 cursor-pointer font-jura"
