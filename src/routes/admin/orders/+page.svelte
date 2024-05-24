@@ -100,24 +100,25 @@
 							<DropdownMenu.Content>
 								<DropdownMenu.Group>
 									<DropdownMenu.Label>Actions</DropdownMenu.Label>
-									<DropdownMenu.Item
+									<!-- <DropdownMenu.Item
 										on:click={() => navigator.clipboard.writeText(order.stripeOrderId)}
 									>
 										Copy Stripe ID
+									</DropdownMenu.Item> -->
+									<!-- VIEW CUSTOMER -->
+									<DropdownMenu.Item on:click={() => (openCustomerViewIdx = i)}>
+										view customer
 									</DropdownMenu.Item>
 								</DropdownMenu.Group>
 								<DropdownMenu.Separator />
-								<!-- VIEW CUSTOMER -->
-								<DropdownMenu.Item on:click={() => (openCustomerViewIdx = i)}>
-									view customer
-								</DropdownMenu.Item>
-								<!-- VIEW PAYMENT DETAILS -->
-								<DropdownMenu.Item>view payment details</DropdownMenu.Item>
-								<!-- VIEW PRODUCTS -->
-								<DropdownMenu.Item>view products</DropdownMenu.Item>
+								<!-- ORDER DETAILS -->
 								<DropdownMenu.Item on:click={() => goto(`/admin/orders/${order.stripeOrderId}`)}
 									>order details</DropdownMenu.Item
 								>
+								<!-- VIEW PAYMENT DETAILS -->
+								<!-- <DropdownMenu.Item>view payment details</DropdownMenu.Item> -->
+								<!-- VIEW PRODUCTS -->
+								<!-- <DropdownMenu.Item>view products</DropdownMenu.Item> -->
 							</DropdownMenu.Content>
 						</DropdownMenu.Root>
 					</Table.Cell>
