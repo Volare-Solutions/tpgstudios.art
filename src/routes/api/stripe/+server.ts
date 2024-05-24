@@ -9,77 +9,90 @@ import { eq } from 'drizzle-orm';
 import type Stripe from 'stripe';
 
 function toBuffer(ab: ArrayBuffer): Buffer {
-	const buf = Buffer.alloc(ab.byteLength);
-	const view = new Uint8Array(ab);
-	for (let i = 0; i < buf.length; i++) {
-		buf[i] = view[i];
-	}
-	return buf;
+    const buf = Buffer.alloc(ab.byteLength);
+    const view = new Uint8Array(ab);
+    for (let i = 0; i < buf.length; i++) {
+        buf[i] = view[i];
+    }
+    return buf;
 }
 
 export const POST = async ({ request }) => {
-	const endpointSecret = env.STRIPE_WEBHOOK_SECRET;
+    const endpointSecret = env.STRIPE_WEBHOOK_SECRET;
 
-	const _rawBody = await request.arrayBuffer();
-	const payload = toBuffer(_rawBody);
+    const _rawBody = await request.arrayBuffer();
+    const payload = toBuffer(_rawBody);
 
-	// Get the signature sent by Stripe
-	const signature = request.headers.get('stripe-signature') ?? '';
-	try {
-		const event = stripe.webhooks.constructEvent(payload, signature, endpointSecret);
-		const eventType = event.type;
+    // Get the signature sent by Stripe
+    const signature = request.headers.get('stripe-signature') ?? '';
 
-		if (eventType === 'checkout.session.completed') {
-			const sessionWithCustomer = await stripe.checkout.sessions.retrieve(event.data.object.id, {
-				expand: ['customer']
-			});
+    console.log('Received webhook request:', request.url);
+    console.log('Headers:', JSON.stringify(request.headers));
+    console.log('Payload:', payload.toString());
 
-			if (sessionWithCustomer.metadata) {
-				const codes = JSON.parse(sessionWithCustomer.metadata.codes) as {
-					quantity: number;
-					code: string;
-				}[];
+    try {
+        const event = stripe.webhooks.constructEvent(payload, signature, endpointSecret);
+        const eventType = event.type;
 
-				const customer = sessionWithCustomer.customer as Stripe.Customer | null;
-				if (customer) {
-					// add customer to user
-					const userId = sessionWithCustomer.metadata.userId as string;
-					if (userId !== '') {
-						await db
-							.update(user)
-							.set({
-								stripeCustomerId: customer.id
-							})
-							.where(eq(user.id, userId));
-					}
-				}
+        console.log('Received event:', event);
 
-				console.log('creating new order', sessionWithCustomer.id);
+        if (eventType === 'checkout.session.completed') {
+            const sessionWithCustomer = await stripe.checkout.sessions.retrieve(event.data.object.id, {
+                expand: ['customer']
+            });
 
-				await createNewOrder({
-					orderId: sessionWithCustomer.id,
-					customerId: customer?.id ?? null,
-					totalPrice: sessionWithCustomer.amount_total ?? 0
-				});
+            if (sessionWithCustomer.metadata) {
+                const codes = JSON.parse(sessionWithCustomer.metadata.codes) as {
+                    quantity: number;
+                    code: string;
+                }[];
 
-				for (let i = 0; i < codes.length; i++) {
-					await createNewOrderProduct({
-						productSizeCode: codes[i].code,
-						quantity: codes[i].quantity,
-						status: 'placed',
-						orderId: sessionWithCustomer.id
-					});
-				}
+                const customer = sessionWithCustomer.customer as Stripe.Customer | null;
+                if (customer) {
+                    // add customer to user
+                    const userId = sessionWithCustomer.metadata.userId as string;
+                    if (userId !== '') {
+                        await db
+                            .update(user)
+                            .set({
+                                stripeCustomerId: customer.id
+                            })
+                            .where(eq(user.id, userId));
+                    }
+                }
 
-				if (sessionWithCustomer.customer_details?.email) {
-					await sendThankYouPurchaseEmail(sessionWithCustomer.customer_details.email);
-				}
-			}
-		}
-	} catch (err) {
-		console.log(`⚠️  Webhook signature verification failed.`, err);
-		error(500);
-	}
+                console.log('creating new order', sessionWithCustomer.id);
 
-	return json({ success: true });
+                await createNewOrder({
+                    orderId: sessionWithCustomer.id,
+                    customerId: customer?.id ?? null,
+                    totalPrice: sessionWithCustomer.amount_total ?? 0
+                });
+
+                for (let i = 0; i < codes.length; i++) {
+                    await createNewOrderProduct({
+                        productSizeCode: codes[i].code,
+                        quantity: codes[i].quantity,
+                        status: 'placed',
+                        orderId: sessionWithCustomer.id
+                    });
+                }
+
+                if (sessionWithCustomer.customer_details?.email) {
+                    try {
+                        await sendThankYouPurchaseEmail(sessionWithCustomer.customer_details.email);
+                    } catch (err) {
+                        console.error('Failed to send email:', err);
+                    }
+                } else {
+                    console.log('No email provided');
+                }
+            }
+        }
+    } catch (err) {
+        console.log(`⚠️  Webhook signature verification failed.`, err);
+        return json({ success: false, error: 'Webhook verification failed' }, { status: 500 });
+    }
+
+    return json({ success: true });
 };
