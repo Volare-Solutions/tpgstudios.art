@@ -108,56 +108,15 @@
 		<form method="post" on:submit|preventDefault={handleSubmit}>
 			{#if data.isSoldOut}
 				<Button type="submit" disabled={true}>Sold out</Button>
-			{:else if data.user}
+			{:else}
 				<Button
-					disabled={cart.length == 0}
+					type="submit"
 					class="bg-[#0071e3] drop-shadow-sm hover:bg-neutral-900 text-lg p-6 font-light rounded-lg"
 				>
 					{cart.length > 0
 						? `Check Out (${cart.length} item${cart.length == 1 ? '' : 's'})`
 						: 'Please pick an item first'}
 				</Button>
-			{:else if cart.length == 0}
-				<Button
-					disabled={cart.length == 0}
-					class="bg-[#0071e3] drop-shadow-sm hover:bg-neutral-900 text-lg p-6 font-light rounded-lg"
-				>
-					{cart.length > 0 ? `Check Out (${cart.length} items)` : 'Please pick an item first'}
-				</Button>
-			{:else}
-				<Dialog.Root>
-					<Dialog.Trigger>
-						<Button
-							class="bg-[#0071e3] drop-shadow-sm hover:bg-neutral-900 text-lg p-6 font-light rounded-lg"
-						>
-							{cart.length > 0
-								? `Check Out (${cart.length} item${cart.length == 1 ? '' : 's'})`
-								: 'Please pick an item first'}
-						</Button></Dialog.Trigger
-					>
-					<Dialog.Content class="sm:max-w-[425px]">
-						<Dialog.Header>
-							<Dialog.Title>Account</Dialog.Title>
-							<Dialog.Description>
-								Would you like to create an account to save your information, manage your orders,
-								and get special offers?
-							</Dialog.Description>
-						</Dialog.Header>
-						<form
-							class="flex flex-row justify-center gap-x-5 w-full"
-							method="post"
-							on:submit|preventDefault={handleSubmit}
-						>
-							<Button type="submit" class="w-full">Continue as guest</Button>
-						</form>
-						<Button
-							type="button"
-							on:click={() => goto('/auth/login')}
-							class="w-full"
-							variant="outline">Create account</Button
-						>
-					</Dialog.Content>
-				</Dialog.Root>
 			{/if}
 		</form>
 	</div>
