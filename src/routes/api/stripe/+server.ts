@@ -66,7 +66,10 @@ export const POST = async ({ request }) => {
                 await createNewOrder({
                     orderId: sessionWithCustomer.id,
                     customerId: customer?.id ?? null,
-                    totalPrice: sessionWithCustomer.amount_total ?? 0
+                    totalPrice: sessionWithCustomer.amount_total ?? 0,
+                    customerEmail: sessionWithCustomer.customer_details?.email ?? '',
+                    customerName: sessionWithCustomer.customer_details?.name ?? '',
+                    customerAddress: JSON.stringify(sessionWithCustomer.customer_details?.address) ?? {}
                 });
 
                 for (let i = 0; i < codes.length; i++) {

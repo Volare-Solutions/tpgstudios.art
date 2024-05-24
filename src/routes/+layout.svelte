@@ -81,7 +81,7 @@
 			<Alert.Description>Please proceed to the cart to checkout.</Alert.Description>
 		</Alert.Root>
 	</div>
-	<NavBar user={data.user} pieces={data.pieces} tags={data.tags}/>
+	<NavBar user={data.user} tags={data.tags}/>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<span on:mouseenter={handleRemoveMenu} class="grow bg-neutral-100">
 		<slot />

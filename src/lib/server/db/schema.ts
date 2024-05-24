@@ -7,6 +7,7 @@ import {
 	boolean,
 	primaryKey,
 	integer,
+	jsonb
   } from 'drizzle-orm/pg-core';
 
 export const providerEnum = pgEnum('provider', ['google', 'github', 'email']);
@@ -171,7 +172,10 @@ export const order = pgTable('order', {
 	stripeCustomerId: text('stripe_customer_id'),
 	totalPrice: integer('total_price').notNull(),
 	timestamp: timestamp('timestamp').notNull(),
-	status: statusEnum('status').notNull().default('new')
+	status: statusEnum('status').notNull().default('new'),
+	customerEmail: text('customer_email'),
+    customerName: text('customer_name'),
+    customerAddress: jsonb('customer_address')
 });
 
 export const orderRelations = relations(order, ({ many }) => ({

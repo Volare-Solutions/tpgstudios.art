@@ -16,13 +16,20 @@ export const createNewOrder = async (data: {
 	orderId: string;
 	customerId: string | null;
 	totalPrice: number;
+	customerEmail: string;
+	customerName: string;
+	customerAddress: string;
 }) => {
 	console.log('creating new order', data);
 	await db.insert(order).values({
 		stripeOrderId: data.orderId,
 		stripeCustomerId: data.customerId,
 		totalPrice: data.totalPrice,
-		timestamp: new Date()
+		timestamp: new Date(),
+		status: 'new',
+		customerEmail: data.customerEmail,
+		customerName: data.customerName,
+		customerAddress: data.customerAddress
 	});
 
 	return data.orderId;
