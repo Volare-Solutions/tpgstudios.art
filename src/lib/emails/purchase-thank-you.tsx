@@ -22,7 +22,7 @@ export const PurchaseThankYou = () => {
 					<Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
 						<Section className="mt-[32px]">
 							<Img
-								src="https://res.cloudinary.com/da8eapr4u/image/upload/v1709570118/logo-no-bg.png"
+								src="https://res.cloudinary.com/da8eapr4u/image/upload/v1711591546/Logos/svgc9kifwk7zk9uhe5su.png"
 								alt="TPG Studios"
 								width="200"
 								className="my-0 mx-auto"
@@ -31,7 +31,7 @@ export const PurchaseThankYou = () => {
 						<Text className="text-black text-[14px] leading-[24px]">Thank you for ordering!</Text>
 
 						<Text className="text-black text-[14px] leading-[24px]">
-							You are one of the very first (among the first 10) to order from us, and we could not
+							You are one of the very first to order from us, and we could not
 							be more grateful. We have included for free an exclusive piece from a currently
 							unreleased collection that will be sent with your order.
 						</Text>
@@ -40,11 +40,7 @@ export const PurchaseThankYou = () => {
 							as we get your order fulfilled.
 						</Text>
 						<Text className="text-black text-[14px] leading-[24px]">
-							Remember that our pieces are made to order, so expect at least a week before your's
-							arrives.
-						</Text>
-						<Text className="text-black text-[14px] leading-[24px]">
-							We use FedEx for our fulfillment, so your package will arrive in FedEx
+							We use USPS for our fulfillment, so your package will arrive in USPS
 							packaging, as they have the best systems in place for keeping your clothing pristine!
 						</Text>
 
