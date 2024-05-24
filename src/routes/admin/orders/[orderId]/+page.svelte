@@ -17,7 +17,6 @@
 		<Card.Content>
 			<p><b>Order ID:</b> {data.order.stripeOrderId}</p>
 			<p><b>Status:</b> {data.order.status}</p>
-			<p><b>Email:</b> {data.order.email}</p>
 			<p><b>Date:</b> {new Date(data.order.timestamp).toLocaleDateString()}</p>
 			<p><b>Total Price:</b> ${(data.order.totalPrice / 100).toFixed(2)}</p>
 		</Card.Content>
@@ -26,7 +25,7 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Product Size Code</th>
+						<th>SKU</th>
 						<th>Quantity</th>
 					</tr>
 				</thead>
@@ -49,6 +48,7 @@
 
 		<Card.Content>
 			<p><b>Name:</b> {data.order.customerInfo.name}</p>
+			<p><b>Email:</b> {data.order.email}</p>
 			<p><b>Address:</b> {data.order.customerInfo.address?.line1}</p>
 			<p><b>City:</b> {data.order.customerInfo.address?.city}</p>
 			<p><b>State:</b> {data.order.customerInfo.address?.state}</p>
