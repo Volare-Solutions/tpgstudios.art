@@ -43,12 +43,10 @@ export const PurchaseThankYou = () => {
 							We use USPS for our fulfillment, so your package will arrive in USPS
 							packaging, as they have the best systems in place for keeping your clothing pristine!
 						</Text>
-
 						<Text className="text-black text-[14px] leading-[24px]">
 							For inquiries, reach us at{' '}
 							<Link href="mailto:support@tpgstudios.art">support@tpgstudios.art</Link>
 						</Text>
-
 						<Text className="text-black text-[12px] leading-[4px] pt-4">Best,</Text>
 						<Text className="text-black text-[12px] leading-[4px] ml-1">TPG Studios Team</Text>
 						{/* <Text className="text-black text-[12px] leading-[4px] ml-1 italic">
