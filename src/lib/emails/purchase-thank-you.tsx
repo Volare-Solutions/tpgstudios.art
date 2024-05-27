@@ -28,30 +28,34 @@ export const PurchaseThankYou = () => {
 								className="my-0 mx-auto"
 							/>
 						</Section>
-						<Text className="text-black text-[14px] leading-[24px]">Thank you for ordering!</Text>
+						<Text className="text-black text-[14px] leading-[24px]">
+							Thank you for your purchase,
+						</Text>
 
 						<Text className="text-black text-[14px] leading-[24px]">
-							You are one of the very first to order from us, and we could not
-							be more grateful. We have included for free an exclusive piece from a currently
-							unreleased collection that will be sent with your order.
+							Thank you for ordering one of our shirts! We want to extend a warm welcome to the TPG Family. We strive to deliver the highest quality products on the market, ensuring that these clothes will last a lifetime. Without you, there is no us.
 						</Text>
+
 						<Text className="text-black text-[14px] leading-[24px]">
-							We're thrilled to be getting one of our pieces in your hands. We'll keep you updated
-							as we get your order fulfilled.
+							We'd love to see how you style our gear! Tag us in your story and use #TPGStudios for a chance to win a free unreleased hoodie.
 						</Text>
+
 						<Text className="text-black text-[14px] leading-[24px]">
-							We use USPS for our fulfillment, so your package will arrive in USPS
-							packaging, as they have the best systems in place for keeping your clothing pristine!
+							We use USPS for our fulfillment, so your package will arrive in USPS packaging, as they have the best systems in place for getting our product into your hands safely.
 						</Text>
+
 						<Text className="text-black text-[14px] leading-[24px]">
 							For inquiries, reach us at{' '}
 							<Link href="mailto:support@tpgstudios.art">support@tpgstudios.art</Link>
 						</Text>
-						<Text className="text-black text-[12px] leading-[4px] pt-4">Best,</Text>
-						<Text className="text-black text-[12px] leading-[4px] ml-1">TPG Studios Team</Text>
-						{/* <Text className="text-black text-[12px] leading-[4px] ml-1 italic">
-							TPG Studios Team
-						</Text> */}
+
+						<Text className="text-black text-[12px] leading-[4px]">
+							Best regards,
+						</Text>
+
+						<Text className="text-black text-[12px] leading-[4px] ml-1">
+							The TPG Studios Team
+						</Text>
 					</Container>
 				</Body>
 			</Tailwind>
