@@ -228,10 +228,10 @@
 	<div class="flex flex-col items-center gap-y-4 md:w-1/2 m-auto text-center px-3">
 		<h2 class="font-jura text-5xl py-6 text-neutral-800">Elevate Your Game</h2>
 		<p class="text-xl font-light text-neutral-700">
-			Our minimal golf apparel is the perfect addition to your golfing wardrobe.
+			Our minimal streetwear is the perfect addition to your everyday wardrobe.
 		</p>
 		<p class="text-xl font-bold text-neutral-700">
-			Our pieces are lightweight, high quality, and designed with a clean, modern aesthetic.
+			Our pieces are high quality and designed with a clean, modern aesthetic.
 		</p>
 		<p class="text-xl font-light text-neutral-700 pb-8">
 			Each piece is made to order. We are just starting out and hope to have you on this journey
