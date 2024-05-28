@@ -74,17 +74,17 @@ export const actions = {
 						},
 					},
 				},
-				{
-					"shipping_rate_data": {
-						"type": "fixed_amount",
-						"fixed_amount": {"amount": 0, "currency": "usd"},
-						"display_name": "Friends & Family Hand Delivered (Local Only)",
-						"delivery_estimate": {
-							"minimum": {"unit": "business_day", "value": 1},
-							"maximum": {"unit": "business_day", "value": 1},
-						},
-					},
-				},
+				// {
+				// 	"shipping_rate_data": {
+				// 		"type": "fixed_amount",
+				// 		"fixed_amount": {"amount": 0, "currency": "usd"},
+				// 		"display_name": "Friends & Family Hand Delivered (Local Only)",
+				// 		"delivery_estimate": {
+				// 			"minimum": {"unit": "business_day", "value": 1},
+				// 			"maximum": {"unit": "business_day", "value": 1},
+				// 		},
+				// 	},
+				// },
 			],
 			line_items,
 			customer: customerId,
