@@ -58,7 +58,7 @@ export const load = async ({ locals }) => {
 	return {
 		user: locals.user,
 		collections: reducedCollections,
-		isSoldOut: orders.length >= 10,
+		isSoldOut: false,
 		numberLeft: 10 - orders.length,
 		pieces,
 		tags
