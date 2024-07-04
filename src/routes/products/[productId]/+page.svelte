@@ -166,28 +166,31 @@
 			</div>
 
 			{#each data.product.sizes.sort((a, b) => sizeToNumber(a.size) - sizeToNumber(b.size)) as size, i}
-				<div
+			<div
+				class={`${
+					size.isAvailable ? '' : 'opacity-50 pointer-events-none'
+				} w-full rounded-lg p-[2px]`}
+				style={`${
+					selectedSizeIdx === i &&
+					`background-image: linear-gradient(to right bottom, ${data.product.gradientColorStart}, ${data.product.gradientColorVia}, ${data.product.gradientColorStop} );`
+				}`}
+			>
+				<button
+					on:click={() => (selectedSizeIdx = i)}
 					class={`${
-						size.isAvailable ? '' : 'opacity-50 pointer-events-none'
-					} w-full rounded-lg p-[2px]`}
-					style={`${
-						selectedSizeIdx === i &&
-						`background-image: linear-gradient(to right bottom, ${data.product.gradientColorStart}, ${data.product.gradientColorVia}, ${data.product.gradientColorStop} );`
-					}`}
+						selectedSizeIdx != i && size.isAvailable ? 'border-neutral-600/50 border-[1px]' : ''
+					} w-full cursor-pointer p-6 bg-white rounded-md flex flex-row justify-between items-center hover:bg-neutral-50 border-solid`}
 				>
-					<button
-						on:click={() => (selectedSizeIdx = i)}
-						class={`${
-							selectedSizeIdx != i && size.isAvailable ? 'border-neutral-600/50 border-[1px]' : ''
-						} w-full cursor-pointer p-6 bg-white rounded-md flex flex-row justify-between items-center hover:bg-neutral-50  border-solid`}
-					>
-						<div class="flex flex-col items-start">
-							<div class="text-lg font-semibold">{size.name}</div>
-							<div class="text-sm font-light">{size.size}</div>
-						</div>
-						<div>${size.price / 100}</div>
-					</button>
-				</div>
+					<div class="flex flex-col items-start">
+						<div class="text-lg font-semibold">{size.name}</div>
+						<div class="text-sm font-light">{size.size}</div>
+					</div>
+					<div class="flex flex-col items-end">
+						<div class="text-sm font-light line-through">$40.00</div>
+						<div>${(size.price / 100).toFixed(2)}</div>
+					</div>
+				</button>
+			</div>
 			{/each}
 			<Button
 				class={`bg-white drop-shadow-md hover:bg-black text-lg p-7 font-light`}

@@ -78,17 +78,14 @@
     });
 </script>
 
-<!-- <button
-	type="button"
-	class="bg-gray-950 text-center text-white font-jura uppercase p-1 sm:text-lg text-sm sticky w-full top-[-100px]"
-	on:click={() => (showModal = true)}
->
-	{#if isSoldOut}
-		Sold Out, Sign up to receive updates on when we will be back in stock!
-	{:else}
-		Launch event, only {remaining} pieces available, order now!
-	{/if}
-</button> -->
+<a href="/products">
+	<button
+		type="button"
+		class="bg-gray-950 text-center text-white font-jura uppercase p-1 sm:text-lg text-sm sticky w-full top-[-100px]"
+	>
+		30% off everything! Happy 4th!
+	</button>
+</a>
 
 {#if showModal}
 	<div class="fixed inset-0 flex items-center justify-center z-40 bg-neutral-950 bg-opacity-90" transition:fade>
