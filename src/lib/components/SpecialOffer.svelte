@@ -83,7 +83,7 @@
 		type="button"
 		class="bg-gray-950 text-center text-white font-jura uppercase p-1 sm:text-lg text-sm sticky w-full top-[-100px]"
 	>
-		30% off everything! Happy 4th!
+		25% off everything! Happy 4th!
 	</button>
 </a>
 
