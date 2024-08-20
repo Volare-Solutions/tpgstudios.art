@@ -45,17 +45,17 @@
 	});
 	const { form: formData } = form;
 
-    if (typeof window !== 'undefined') {
-        isMobile = window.innerWidth <= 768; // Adjust this value based on your mobile breakpoint
+    // if (typeof window !== 'undefined') {
+    //     isMobile = window.innerWidth <= 768; // Adjust this value based on your mobile breakpoint
 
-        // Show the modal only if the user hasn't seen it yet
-        if (!sessionStorage.getItem('hasSeenModal')) {
-            setTimeout(() => {
-                showModal = true;
-            }, 1000);
-            sessionStorage.setItem('hasSeenModal', 'true');
-        }
-    }
+    //     // Show the modal only if the user hasn't seen it yet
+    //     if (!sessionStorage.getItem('hasSeenModal')) {
+    //         setTimeout(() => {
+    //             showModal = true;
+    //         }, 1000);
+    //         sessionStorage.setItem('hasSeenModal', 'true');
+    //     }
+    // }
 
     onMount(() => {
         body = document.querySelector('body');
