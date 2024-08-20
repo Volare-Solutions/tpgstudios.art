@@ -156,7 +156,7 @@
 					itemData={{
 						name: product.name,
 						productId: product.id,
-						cloudinaryId: product.images.length > 0 ? product.images[0].cloudinaryId : null,
+						cloudinaryId: product.images.length > 0 ? product.images[1].cloudinaryId : null, // TODO: I don't like this hack ... use isPrimary instead
 						tags: product.tags.map((tag) => tag.tagId),
 						selectTag: addParam,
 						displayMode: displayMode,

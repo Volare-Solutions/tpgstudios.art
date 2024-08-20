@@ -32,7 +32,7 @@ export const load = async ({ url }) => {
 			},
 			images: {
 				orderBy: desc(productImage.isPrimary),
-				limit: 1
+				limit: 2
 			},
 			sizes: true
 		},
