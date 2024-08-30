@@ -118,13 +118,18 @@ export const actions = {
 			error(400, res.error.name);
 		}
 
-		await db.insert(productImage).values({
-			width: res.data.width,
-			height: res.data.height,
-			cloudinaryId: res.data.cloudinaryId,
-			productId: params.productId
-		});
+		try {
+			await db.insert(productImage).values({
+				width: res.data.width,
+				height: res.data.height,
+				cloudinaryId: res.data.cloudinaryId,
+				productId: params.productId
+			});
 
-		return { success: true };
+			return { success: true };
+		} catch (err) {
+			console.error('Error inserting image:', err);
+			error(500, 'Failed to insert image');
+		}
 	}
 };
