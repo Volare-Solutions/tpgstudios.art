@@ -83,7 +83,7 @@
 	</div>
 	<NavBar user={data.user} tags={data.tags}/>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<span on:mouseenter={handleRemoveMenu} class="grow bg-neutral-100">
+	<span on:mouseenter={handleRemoveMenu} class="grow">
 		<slot />
 	</span>
 

@@ -11,9 +11,9 @@
 
 <main class="grow">
 	<SpecialOffer />
-	<div class=" w-full relative">
+	<div class="w-full relative">
 		<div
-			class="z-10 absolute top-[40%] left-0 w-full flex justify-center items-center flex-col gap-y-2"
+			class="z-10 absolute top-1/2 left-0 w-full flex justify-center items-center flex-col gap-y-2 transform -translate-y-1/2"
 		>
 			<div class="text-white flex justify-center items-center flex-col gap-y-2">
 				<div style="backdrop-filter: blur(5px); border-radius: 10px; padding: 12px;">
@@ -46,20 +46,20 @@
 			</div>
 		</div> -->
 		<div
-			class="object-cover w-full h-[80vh] hidden sm:flex transition-all ease-in-out duration-300 bg-black"
+			class="object-cover w-full h-screen hidden sm:flex transition-all ease-in-out duration-300 bg-black"
 		>
 			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
 				src={desktopHomeImage}
 				width={1920}
-				height={900}
+				height={1080}
 				objectFit="cover"
 				alt="home banner"
 				opacity={90}
 			/>
 		</div>
 		<div
-			class={`object-cover w-full h-[80vh] sm:hidden flex transition-all ease-in-out duration-300 bg-black`}
+			class={`object-cover w-full h-screen sm:hidden flex transition-all ease-in-out duration-300 bg-black`}
 		>
 			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage

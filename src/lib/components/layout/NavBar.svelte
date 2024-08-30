@@ -1,9 +1,13 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import Logo from '$lib/client/images/black-logo.png';
-	import MobileLogo from '$lib/client/images/black-logo.png';
+	import Logo from '$lib/client/images/black-logo-no-bg.png';
+	import WhiteLogo from '$lib/client/images/white-logo.png';
+	import MobileLogo from '$lib/client/images/black-logo-no-bg.png';
+	import MobileWhiteLogo from '$lib/client/images/white-logo.png';
 	import { CldImage } from 'svelte-cloudinary';
 	import { cartLengthStore } from '$lib/client/cart';
+	import { onMount } from 'svelte';
+
 	export let user: {
 		firstName: string;
 		lastName: string;
@@ -31,15 +35,37 @@
 		name: string;
 		active: boolean;
 	}[];
+
+	let scrolled = false;
+
+	onMount(() => {
+		const handleScroll = () => {
+			scrolled = window.scrollY > window.innerHeight;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	});
+
+	$: navClass = scrolled
+		? 'bg-white text-black'
+		: 'bg-transparent text-white';
+
+	$: logoSrc = scrolled ? Logo : WhiteLogo;
+	$: mobileLogoSrc = scrolled ? MobileLogo : MobileWhiteLogo;
+	$: strokeColor = scrolled ? 'black' : 'white';
 </script>
 
 <nav
-	class={`sm:flex sm:flex-row items-center justify-between grid grid-cols-3 sm:px-12 p-4 sm:py-1 w-full text-black z-20 sticky top-0 bg-white`}
+	class={`sm:flex sm:flex-row items-center justify-between grid grid-cols-3 sm:px-12 p-4 sm:py-1 w-full z-20 fixed top-0 left-0 right-0 transition-all duration-300 ${navClass}`}
 >
 	<button class="sm:hidden flex" on:click={() => handleMobileMenu()}>
 		<svg width="22" height="11" viewBox="0 0 22 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<path d="M1 1H21" stroke="#444444" stroke-width="1" stroke-linecap="round" />
-			<path d="M1 10H21" stroke="#444444" stroke-width="1" stroke-linecap="round" />
+			<path d="M1 1H21" stroke={strokeColor} stroke-width="1" stroke-linecap="round" />
+			<path d="M1 10H21" stroke={strokeColor} stroke-width="1" stroke-linecap="round" />
 		</svg>
 	</button>
 
@@ -84,14 +110,14 @@
 	</div>
 
 	<a class="text-4xl font-light mx-auto sm:mx-0" href="/">
-		<img src={Logo} alt="TPG" class=" h-[80px] hidden sm:flex" />
-		<img src={MobileLogo} alt="TPG" class="h-[70px] sm:hidden flex" />
+		<img src={logoSrc} alt="TPG" class="h-[80px] hidden sm:flex" />
+		<img src={mobileLogoSrc} alt="TPG" class="h-[70px] sm:hidden flex" />
 	</a>
 
 	<div class="flex-row items-center hidden sm:flex gap-6">
 		<a
 			href="/collections"
-			class="text-black uppercase font-jura flex flex-row items-center"
+			class="uppercase font-jura flex flex-row items-center"
 			on:mouseenter={handleCollectionsHover}
 		>
 			Collections
@@ -102,7 +128,7 @@
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<path d="M7 21.7705L12 33.2288L17 21.7705H7Z" fill="black" />
+				<path d="M7 21.7705L12 33.2288L17 21.7705H7Z" fill="currentColor" />
 			</svg>
 		</a>
 		{#if user}
@@ -156,7 +182,11 @@
 			>
 
 			<div
-				class="bg-black text-white font-light text-xs rounded-full absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center"
+				class="font-light text-xs rounded-full absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center"
+				class:bg-white={!scrolled}
+				class:text-black={!scrolled}
+				class:bg-black={scrolled}
+				class:text-white={scrolled}
 			>
 				{$cartLengthStore}
 			</div>
@@ -174,7 +204,7 @@
 					height="24"
 					viewBox="0 0 24 24"
 					fill="none"
-					stroke="#444444"
+					stroke="currentColor"
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
@@ -190,7 +220,7 @@
 					height="24"
 					viewBox="0 0 24 24"
 					fill="none"
-					stroke="#444444"
+					stroke="currentColor"
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
@@ -206,7 +236,7 @@
 				height="24"
 				viewBox="0 0 24 24"
 				fill="none"
-				stroke="#444444"
+				stroke="currentColor"
 				stroke-width="2"
 				stroke-linecap="round"
 				stroke-linejoin="round"
@@ -216,7 +246,11 @@
 				/></svg
 			>
 			<div
-				class="bg-black text-white font-light text-xs rounded-full absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center"
+				class="font-light text-xs rounded-full absolute -bottom-1 -right-1 w-4 h-4 flex items-center justify-center"
+				class:bg-white={!scrolled}
+				class:text-black={!scrolled}
+				class:bg-black={scrolled}
+				class:text-white={scrolled}
 			>
 				{$cartLengthStore}
 			</div>
