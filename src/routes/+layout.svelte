@@ -8,6 +8,7 @@
 	import { inject } from '@vercel/analytics'
 	import * as Alert from '$lib/components/ui/alert';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { page } from '$app/stores';
 
 	inject();
 	injectSpeedInsights();
@@ -28,6 +29,8 @@
 		handleRemoveMenu();
 		handleRemoveMobile();
 	}
+
+	$: isHomePage = $page.url.pathname === '/';
 </script>
 
 <svelte:head>
@@ -81,9 +84,9 @@
 			<Alert.Description>Please proceed to the cart to checkout.</Alert.Description>
 		</Alert.Root>
 	</div>
-	<NavBar user={data.user} tags={data.tags}/>
+	<NavBar user={data.user} tags={data.tags} isHomePage={isHomePage}/>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<span on:mouseenter={handleRemoveMenu} class="grow">
+	<span on:mouseenter={handleRemoveMenu} class="grow" class:pt-[78px]={!isHomePage}>
 		<slot />
 	</span>
 

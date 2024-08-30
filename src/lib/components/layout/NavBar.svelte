@@ -15,6 +15,8 @@
 		isAdmin: boolean;
 	} | null;
 
+	export let isHomePage: boolean;
+
 	const handleCollectionsHover = () => {
 		document.getElementById('drop-menu')?.classList.remove('hidden');
 	};
@@ -40,27 +42,28 @@
 
 	onMount(() => {
 		const handleScroll = () => {
-			scrolled = window.scrollY > window.innerHeight;
+			scrolled = isHomePage ? window.scrollY > window.innerHeight : true;
 		};
 
 		window.addEventListener('scroll', handleScroll);
+		handleScroll(); // Call once to set initial state
 
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	});
 
-	$: navClass = scrolled
+	$: navClass = scrolled || !isHomePage
 		? 'bg-white text-black'
 		: 'bg-transparent text-white';
 
-	$: logoSrc = scrolled ? Logo : WhiteLogo;
-	$: mobileLogoSrc = scrolled ? MobileLogo : MobileWhiteLogo;
-	$: strokeColor = scrolled ? 'black' : 'white';
+	$: logoSrc = scrolled || !isHomePage ? Logo : WhiteLogo;
+	$: mobileLogoSrc = scrolled || !isHomePage ? MobileLogo : MobileWhiteLogo;
+	$: strokeColor = scrolled || !isHomePage ? 'black' : 'white';
 </script>
 
 <nav
-	class={`sm:flex sm:flex-row items-center justify-between grid grid-cols-3 sm:px-12 p-4 sm:py-1 w-full z-20 fixed top-0 left-0 right-0 transition-all duration-300 ${navClass}`}
+	class={`sm:flex sm:flex-row items-center justify-between grid grid-cols-3 sm:px-12 p-4 sm:py-1 w-full z-20 ${isHomePage ? 'fixed' : 'sticky'} top-0 left-0 right-0 transition-all duration-300 ${navClass}`}
 >
 	<button class="sm:hidden flex" on:click={() => handleMobileMenu()}>
 		<svg width="22" height="11" viewBox="0 0 22 11" fill="none" xmlns="http://www.w3.org/2000/svg">
