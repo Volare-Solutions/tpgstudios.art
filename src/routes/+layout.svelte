@@ -86,7 +86,7 @@
 	</div>
 	<NavBar user={data.user} tags={data.tags} isHomePage={isHomePage}/>
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<span on:mouseenter={handleRemoveMenu} class="grow" class:pt-[78px]={!isHomePage}>
+	<span on:mouseenter={handleRemoveMenu} class="grow" class:pt-[4px]={!isHomePage}>
 		<slot />
 	</span>
 
