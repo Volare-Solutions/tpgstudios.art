@@ -186,7 +186,7 @@
 						<div class="text-sm font-light">{size.size}</div>
 					</div>
 					<div class="flex flex-col items-end">
-						{#if data.product.id !== 'hat_1'}
+						{#if data.product.name !== 'Hat'}
 							<div class="text-sm font-light line-through">$40.00</div>
 						{/if}
 						<div>${(size.price / 100).toFixed(2)}</div>
