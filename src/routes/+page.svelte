@@ -26,7 +26,7 @@
 				</div>
 				<a
 					class="uppercase bg-black mt-14 px-7 py-3 font-light"
-					href={`/products?tag=${tagLink}`}
+					href={`${tagLink}`}
 				>
 					shop now</a
 				>
