@@ -206,3 +206,10 @@ export const assets = pgTable('assets', {
 	homeSubtitle: text('home_subtitle').notNull(),
 	tagLink: text('tag_link').notNull()
 });
+
+export const hoodieSignups = pgTable('hoodie_signups', {
+	email: text('email').primaryKey(),
+	name: text('name').notNull(),
+	createdAt: timestamp('created_at').notNull(),
+	size: text('size').notNull(),
+});

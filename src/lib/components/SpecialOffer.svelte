@@ -78,14 +78,60 @@
     });
 </script>
 
-<!-- <a href="/products">
-	<button
-		type="button"
-		class="bg-gray-950 text-center text-white font-jura uppercase p-1 sm:text-lg text-sm sticky w-full top-[-100px]"
-	>
-		25% off everything!
-	</button>
-</a> -->
+<a href="#hoodie-presale">
+	<div class="marquee">
+		<div class="marquee__inner">
+			<span class="marquee__text">
+				Exclusive Hoodie Presale - Limited Time Offer
+			</span>
+		</div>
+	</div>
+</a>
+
+<style>
+	.marquee {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background-color: #1a1a1a;
+		color: #fff;
+		overflow: hidden;
+		z-index: 50;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0;
+		padding: 0;
+		height: 40px; /* Set a fixed height for the special offer */
+	}
+
+	.marquee__inner {
+		display: flex;
+		white-space: nowrap;
+	}
+
+	.marquee__text {
+		padding: 1rem;
+		font-size: 1rem;
+		text-transform: uppercase;
+		animation: pop 5s ease-in-out infinite;
+	}
+
+	@keyframes pop {
+		0%, 100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.1);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.marquee__text {
+			font-size: 0.8rem; /* Smaller text size for mobile */
+		}
+	}
+</style>
 
 {#if showModal}
 	<div class="fixed inset-0 flex items-center justify-center z-40 bg-neutral-950 bg-opacity-90" transition:fade>
@@ -94,7 +140,7 @@
 			class="flex shadow-md rounded-lg overflow-hidden md:w-3/5 bg-white z-50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-auto w-full flex-col md:flex-row"
 		>
 			<div class="md:w-1/2 h-full">
-				{#if !isMobile}
+				{#if !isMobile} 
 					<CldImage src={'Logos/grqj2osxgbbbk6bduzhq'} width={1000} height={1000} objectFit="cover" />
 				{/if}
 			</div>

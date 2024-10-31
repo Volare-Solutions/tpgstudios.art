@@ -2,11 +2,12 @@ import { db } from '$lib/server/db';
 import { productImage } from '$lib/server/db/schema';
 import { zod } from 'sveltekit-superforms/adapters';
 import { emailFormSchema } from '$lib/components/SpecialOffer.svelte';
+import { presaleFormSchema } from '$lib/components/PreSaleHoodie.svelte';
 import { superValidate } from "sveltekit-superforms";
 import { fail, type Actions } from "@sveltejs/kit";
-import { emailList } from '$lib/server/db/schema';
+import { emailList, hoodieSignups } from '$lib/server/db/schema';
 import { generateId } from 'lucia';
-import { sendThankYouListEmail } from '$lib/server/resend';
+import { sendThankYouListEmail, sendPresaleSignupEmail } from '$lib/server/resend';
 import { desc, eq } from 'drizzle-orm';
 
 type SendCollection = {
@@ -65,6 +66,39 @@ export const actions: Actions = {
 		});
 
 		await sendThankYouListEmail(form.data.email, key);
+
+		return {
+			success: true,
+			form,
+		};
+	},
+	presale: async (event) => {
+		const form = await superValidate(event, zod(presaleFormSchema));
+		if (!form.valid) {
+			return fail(400, {
+				form,
+				error: 'Invalid form submission',
+			});
+		}
+
+		// Check if email already exists
+		const existingEmail = await db.select().from(hoodieSignups).where(eq(hoodieSignups.email, form.data.email));
+		if (existingEmail.length > 0) {
+			return fail(400, {
+				form,
+				error: 'Email already exists',
+			});
+		}
+
+		// Database operation to store user for presale
+		await db.insert(hoodieSignups).values({
+			email: form.data.email,
+			name: form.data.name,
+			size: form.data.size,
+			createdAt: new Date()
+		});
+
+		await sendPresaleSignupEmail(form.data.email, form.data.name);
 
 		return {
 			success: true,

@@ -3,6 +3,7 @@
 	import ImageCollection from '$lib/components/ImageCollection.svelte';
 	import { CldImage } from 'svelte-cloudinary';
 	import SpecialOffer from '$lib/components/SpecialOffer.svelte';
+	import PreSaleHoodie from '$lib/components/PreSaleHoodie.svelte';
 
 	export let data;
 
@@ -33,22 +34,9 @@
 			</div>
 		</div>
 
-		<!-- <div class="absolute bottom-0 left-1/2 translate-x-[-50%] p-4">
-			<div class="flex gap-x-2">
-				{#each imgs as _, i}
-					<button
-						on:click={() => (imgNum = i)}
-						class={`w-[10px] h-[10px] ${
-							i === imgNum && 'bg-white'
-						} rounded-full border border-white`}
-					/>
-				{/each}
-			</div>
-		</div> -->
 		<div
 			class="object-cover w-full h-screen hidden sm:flex transition-all ease-in-out duration-300 bg-black"
 		>
-			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
 				src={desktopHomeImage}
 				width={1920}
@@ -61,7 +49,6 @@
 		<div
 			class={`object-cover w-full h-screen sm:hidden flex transition-all ease-in-out duration-300 bg-black`}
 		>
-			<!-- CLD IMAGE SWITCH NEEDED -->
 			<CldImage
 				src={mobileHomeImage}
 				width={700}
@@ -71,60 +58,9 @@
 				opacity={80}
 			/>
 		</div>
-		<!-- <img
-			class={`object-cover w-full h-[80vh] hidden sm:flex transition-all ease-in-out duration-300`}
-			alt="The project logo"
-			src={imgs[imgNum]}
-		/>
-		<img
-			class={`object-cover w-full h-[80vh] sm:hidden flex transition-all ease-in-out duration-300`}
-			alt="The project logo"
-			src={mobileImgs[imgNum]}
-		/> -->
 	</div>
 	{#each data.collections as collection}
 		<ImageCollection collectionData={collection} />
 	{/each}
-	<!-- <ImageCollection
-		collectionData={{
-			name: 'Planes',
-			tagLine: 'Honor our history',
-			productInfo: [
-				{
-					cloudinaryId: 'cld-sample-4',
-					secondaryCloudinary: 'cld-sample-5',
-					name: 'Molten Moon',
-					availableSizes: ['5x5', '4.8x6.4', '7.2x9.6', '11x11', '10.8x14.4'],
-					soldOutSizes: [],
-					link: '/products/my_second_product'
-				},
-				{
-					cloudinaryId: 'cld-sample-5',
-					secondaryCloudinary: 'cld-sample-4',
-					name: 'Europan Frontier',
-					availableSizes: ['5x5', '4.8x6.4', '7.2x9.6'],
-					soldOutSizes: ['11x11', '10.8x14.4'],
-					link: '/products/my_first_product'
-				},
-				{
-					cloudinaryId: 'cld-sample-4',
-					secondaryCloudinary: 'cld-sample-5',
-					name: 'Molten Moon',
-					availableSizes: ['5x5', '4.8x6.4', '10.8x14.4'],
-					soldOutSizes: ['7.2x9.6', '11x11'],
-					link: '/products/my_second_product'
-				},
-				{
-					cloudinaryId: 'cld-sample-5',
-					secondaryCloudinary: 'cld-sample-4',
-					name: 'Europan Frontier',
-					availableSizes: ['7.2x9.6', '11x11', '10.8x14.4'],
-					soldOutSizes: ['5x5', '4.8x6.4'],
-					link: '/products/my_first_product'
-				}
-			],
-			dark: true,
-			collectionTag: 'Aerospace'
-		}}
-	/> -->
+	<PreSaleHoodie />
 </main>
