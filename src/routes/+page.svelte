@@ -3,7 +3,6 @@
 	import ImageCollection from '$lib/components/ImageCollection.svelte';
 	import { CldImage } from 'svelte-cloudinary';
 	import SpecialOffer from '$lib/components/SpecialOffer.svelte';
-	import PreSaleHoodie from '$lib/components/PreSaleHoodie.svelte';
 
 	export let data;
 
@@ -62,5 +61,4 @@
 	{#each data.collections as collection}
 		<ImageCollection collectionData={collection} />
 	{/each}
-	<PreSaleHoodie />
 </main>

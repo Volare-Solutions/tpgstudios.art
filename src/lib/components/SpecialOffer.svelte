@@ -78,7 +78,7 @@
     });
 </script>
 
-<a href="#hoodie-presale">
+<a href="/products/ly4tf4oemnpfaoa">
 	<div class="marquee">
 		<div class="marquee__inner">
 			<span class="marquee__text">

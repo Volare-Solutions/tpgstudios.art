@@ -186,7 +186,7 @@
 						<div class="text-sm font-light">{size.size}</div>
 					</div>
 					<div class="flex flex-col items-end">
-						{#if data.product.name !== 'Hat'}
+						{#if !['Hat', 'Hoodie'].some(item => data.product.name.includes(item))}
 							<div class="text-sm font-light line-through">$40.00</div>
 						{/if}
 						<div>${(size.price / 100).toFixed(2)}</div>
