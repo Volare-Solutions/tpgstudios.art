@@ -194,6 +194,21 @@
 				</button>
 			</div>
 			{/each}
+			{#if data.product.name.toLowerCase().includes('hoodie')}
+				<div class="w-full rounded-lg bg-black/5 p-6 flex flex-col gap-2">
+					<div class="font-jura text-xl" 
+						style={`color: ${data.product.gradientColorStart};`}
+					>
+						Pre-Order Timeline
+					</div>
+					<div class="flex flex-col gap-1">
+						<div class="font-semibold text-gray-800">Expected Shipping: 4-6 weeks</div>
+						<div class="text-sm text-gray-600">
+							Each hoodie is carefully made to order. We appreciate your patience as we craft your piece.
+						</div>
+					</div>
+				</div>
+			{/if}
 			<Button
 				class={`bg-white drop-shadow-md hover:bg-black text-lg p-7 font-light`}
 				disabled={data.isSoldOut}
