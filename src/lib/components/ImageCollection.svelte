@@ -19,8 +19,18 @@
 
 	const isHoodie = (name: string) => name.toLowerCase().includes('hoodie');
 	
-	// Separate hoodie from other products
-	$: hoodieProduct = collectionData.productInfo.find(p => isHoodie(p.name));
+	$: {
+		console.log('Full product list:', collectionData.productInfo);
+		console.log('Product names:', collectionData.productInfo.map(p => p.name));
+	}
+
+	// Separate hoodie from other products with logging
+	$: hoodieProduct = collectionData.productInfo.find(p => {
+		const isHood = isHoodie(p.name);
+		console.log(`Checking product ${p.name}, isHoodie: ${isHood}`);
+		return isHood;
+	});
+
 	$: otherProducts = collectionData.productInfo.filter(p => !isHoodie(p.name));
 </script>
 
@@ -29,6 +39,7 @@
 		? 'bg-gray-950 text-white'
 		: 'bg-neutral-100 text-black'} px-2 sm:px-4 pt-6 pb-4 sm:py-10 sm:items-center"
 >
+	<!-- Show hoodie section only if found -->
 	{#if hoodieProduct}
 		<div class="w-full mb-12">
 			<a

@@ -6,6 +6,16 @@
 
 	export let data;
 
+	// Find the collection containing the hoodie
+	$: hoodieCollection = data.collections.find(collection => 
+        collection.productInfo.some(product => product.name.toLowerCase().includes('hoodie'))
+    );
+
+    // Get all other collections
+    $: otherCollections = data.collections.filter(collection => 
+        !collection.productInfo.some(product => product.name.toLowerCase().includes('hoodie'))
+    );
+
 	const { homeTitle, homeSubtitle, desktopHomeImage, mobileHomeImage, tagLink } = data.asset;
 </script>
 
@@ -58,7 +68,13 @@
 			/>
 		</div>
 	</div>
-	{#each data.collections as collection}
+	<!-- Display Hoodie Collection First -->
+	{#if hoodieCollection}
+		<ImageCollection collectionData={hoodieCollection} />
+	{/if}
+
+	<!-- Display Other Collections -->
+	{#each otherCollections as collection}
 		<ImageCollection collectionData={collection} />
 	{/each}
 </main>
