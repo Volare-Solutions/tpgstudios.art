@@ -48,6 +48,7 @@
 			>
 				<div class="productImg relative">
 					<div class="pre-sale-banner">PRE-SALE</div>
+					<div class="shipping-banner">Ships in 4-6 Weeks</div>
 					<div>
 						<CldImage
 							width={350 * 2}
@@ -190,4 +191,18 @@
 		letter-spacing: 1px;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 	}
+
+	.shipping-banner {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: black;
+        color: white;
+        padding: 8px;
+        text-align: center;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        z-index: 10;
+    }
 </style>
