@@ -50,6 +50,9 @@
 			<p><b>Name:</b> {data.order.customerInfo.name}</p>
 			<p><b>Email:</b> {data.order.email}</p>
 			<p><b>Address:</b> {data.order.customerInfo.address?.line1}</p>
+			{#if data.order.customerInfo.address?.line2}
+				<p><b>Apt:</b> {data.order.customerInfo.address?.line2}</p>
+			{/if}
 			<p><b>City:</b> {data.order.customerInfo.address?.city}</p>
 			<p><b>State:</b> {data.order.customerInfo.address?.state}</p>
 			<p><b>Zip:</b> {data.order.customerInfo.address?.postal_code}</p>
