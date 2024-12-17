@@ -1,7 +1,6 @@
 import { db } from '$lib/server/db';
 import { productImage } from '$lib/server/db/schema';
 import { zod } from 'sveltekit-superforms/adapters';
-import { emailFormSchema } from '$lib/components/SpecialOffer.svelte';
 import { presaleFormSchema } from '$lib/components/PreSaleHoodie.svelte';
 import { superValidate } from "sveltekit-superforms";
 import { fail, type Actions } from "@sveltejs/kit";
@@ -36,42 +35,6 @@ type Asset = {
 };
 
 export const actions: Actions = {
-	email: async (event) => {
-		const form = await superValidate(event, zod(emailFormSchema));
-		if (!form.valid) {
-			return fail(400, {
-				form,
-				error: 'Invalid form submission',
-			});
-		}
-
-		const key = generateId(20);
-
-		// Check if email already exists
-		const existingEmail = await db.select().from(emailList).where(eq(emailList.email, form.data.email));
-		if (existingEmail.length > 0) {
-			return fail(400, {
-				form,
-				error: 'Email already exists',
-			});
-		}
-
-		// Database operation to store user email
-		await db.insert(emailList).values({
-			key,
-			email: form.data.email,
-			phoneNumber: form.data.phoneNumber,
-			shirtSize: form.data.shirtSize,
-			subscribedAt: new Date()
-		});
-
-		await sendThankYouListEmail(form.data.email, key);
-
-		return {
-			success: true,
-			form,
-		};
-	},
 	presale: async (event) => {
 		const form = await superValidate(event, zod(presaleFormSchema));
 		if (!form.valid) {
