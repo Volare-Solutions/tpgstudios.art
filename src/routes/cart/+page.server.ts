@@ -33,7 +33,7 @@ export const actions = {
 			})
 		];
 
-		// if (total < 125) {
+		// if (total < 65) {
 		// 	// add shipping to total
 		// 	line_items.push({
 		// 		price_data: {
@@ -55,8 +55,8 @@ export const actions = {
 				{
 					"shipping_rate_data": {
 						"type": "fixed_amount",
-						"fixed_amount": {"amount": 0, "currency": "usd"},
-						"display_name": "Free shipping",
+						"fixed_amount": {"amount": total >= 65 ? 0 : 700, "currency": "usd"},
+						"display_name": total >= 65 ? "Free shipping" : "Standard shipping",
 						"delivery_estimate": {
 							"minimum": {"unit": "business_day", "value": 5},
 							"maximum": {"unit": "business_day", "value": 7},

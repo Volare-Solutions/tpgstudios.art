@@ -63,7 +63,9 @@
 </script>
 
 <nav
-	class={`sm:flex sm:flex-row items-center justify-between grid grid-cols-3 sm:px-12 p-4 sm:py-1 w-full z-20 ${isHomePage ? 'fixed' : 'sticky'} top-0 left-0 right-0 transition-all duration-300 ${navClass}`}
+	class={`sm:flex sm:flex-row items-center justify-between grid grid-cols-3 sm:px-12 p-4 sm:py-1 w-full z-20 ${
+		isHomePage ? 'fixed' : 'sticky'
+	} top-4 left-0 right-0 transition-all duration-300 ${navClass}`}
 >
 	<button class="sm:hidden flex" on:click={() => handleMobileMenu()}>
 		<svg width="22" height="11" viewBox="0 0 22 11" fill="none" xmlns="http://www.w3.org/2000/svg">

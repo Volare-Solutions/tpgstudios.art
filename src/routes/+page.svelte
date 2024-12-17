@@ -28,7 +28,7 @@
 			<div class="text-white flex justify-center items-center flex-col gap-y-2">
 				<div style="backdrop-filter: blur(5px); border-radius: 10px; padding: 12px;">
 					<div class="flex flex-row gap-4 items-center">
-						<img src={MobileLogo} alt="TPG" class="h-[40px] sm:hidden flex" />
+						<!-- <img src={MobileLogo} alt="TPG" class="h-[40px] sm:hidden flex" /> -->
 
 						<h2 class="sm:text-5xl text-3xl font-jura">{homeTitle}</h2>
 					</div>
